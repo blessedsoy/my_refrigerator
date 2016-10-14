@@ -1,1 +1,0 @@
-ingredient_controller.js

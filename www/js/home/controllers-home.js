@@ -110,6 +110,8 @@ angular.module('starter.controllers-home', [])
 	  	};
 	  	$scope.cancel = function() {
 	    	$mdDialog.cancel();
+        $ionicListDelegate.closeOptionButtons()
+
 	  	};
 
 		$scope.categories = {
@@ -130,6 +132,8 @@ angular.module('starter.controllers-home', [])
   };
 
   $scope.edit_confirm = function () {
+    $mdDialog.cancel();
+    $ionicListDelegate.closeOptionButtons()
   	console.log($scope.edit_item)
   }
 

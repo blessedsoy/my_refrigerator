@@ -9,7 +9,9 @@ angular.module('starter', [
   'ionic', 
   'starter.controllers-home', 
   'starter.controllers-account',
-  'ngMaterial'
+  'ngMaterial',
+  'ngMessages',
+  'ngAnimate'
   ])
 
 .run(function($ionicPlatform) {
@@ -58,10 +60,20 @@ angular.module('starter', [
     views: {
       'tab-home': {
         templateUrl: 'templates/tab-home.html',
-        controller: 'HomeCtrl'
+        controller: 'HomeCtrl as home'
       }
     }
   })
+
+  .state('tab.new', {
+    url: '/new',
+    views: {
+      'tab-home': {
+        templateUrl: 'templates/home/new-item.html',
+        controller: 'HomeCtrl as home'
+      }
+    }
+  })  
 
   .state('tab.account', {
     url: '/account',

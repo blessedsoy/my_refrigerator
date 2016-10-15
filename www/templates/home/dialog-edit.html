@@ -1,0 +1,50 @@
+<md-dialog aria-label=""  ng-cloak>
+  <form name="confirm">
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <h4>Edit item</h4>
+        <br>
+        
+          <md-input-container class="md-block">
+            
+            <input name = "name" ng-model="edit_item.name" type="text" placeholder="Name (required)" ng-required="true">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+            
+            <input name = "category" ng-model="categories[edit_item.category_id]" type="text" placeholder="Category (required)" ng-required="true">
+            
+          </md-input-container>
+
+          <md-input-container class="md-block">
+            
+            <input name = "where" ng-model="edit_item.in_freezer" type="text" placeholder="Where (required)" ng-required="true">
+            
+          </md-input-container>
+
+          <md-input-container class="md-block">
+            
+            <input name = "purchase date" ng-model="edit_item.purchase_date" type="text" placeholder="Purchase date">
+            
+          </md-input-container>
+
+          <md-input-container class="md-block">
+            
+            <input name = "expiration date" ng-model="edit_item.expiration_date" type="text" placeholder="Expiration date">
+            
+          </md-input-container>                              
+  
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      
+      <md-button ng-click="cancel()">
+       Cancel
+      </md-button>
+      <md-button ng-disabled = "confirm.$invalid" ng-click="edit_confirm()" md-autofocus>
+        Confirm
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

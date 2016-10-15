@@ -1,0 +1,75 @@
+<ion-view>
+  <ion-nav-title>
+    <p>New Ingredient</p>
+  </ion-nav-title>
+
+  <ion-content>
+
+    <div class="md-padding" ng-cloak="" layout="column">
+
+      <md-card>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">What ingredient are you adding?</span>
+            <!-- <span class="md-subhead">Choose wisely if you want to win.</span> -->
+          </md-card-title-text>
+        </md-card-title>
+
+        <md-card-content>
+
+          <md-input-container class="md-block" flex-gt-sm="">
+            <label>Choose a category</label>
+              <md-select ng-model="home.new.category_id" placeholder="Categories" class="md-no-underline">
+                <md-option value=1>Vegetable</md-option>
+                <md-option value=2>Fruits</md-option>
+                <md-option value=3>Meat</md-option>
+                <md-option value=4>Dairy</md-option>
+                <md-option value=5>Fish</md-option>
+                <md-option value=6>Cooked Foods</md-option>
+                <md-option value=7>Fermented Foods</md-option>
+                <md-option value=8>Drinks</md-option>
+                <md-option value=9>Sauce or Salad Dressings</md-option>
+                <md-option value=10>Etc.</md-option>
+              </md-select>
+          </md-input-container>
+
+          
+        
+          <md-input-container class="md-block" flex-gt-sm="" style="margin-bottom:0">
+            <label>Name</label>
+            <input ng-model="home.new.name">
+          </md-input-container>          
+            
+        
+          <md-input-container class="md-block" flex-gt-sm="">
+            <label>Where are you putting in?</label>
+            <md-select ng-model="home.new.in_freezer" class="md-no-underline" required="" md-no-asterisk="true">
+              <md-option value=false>Fridge</md-option>
+              <md-option value=true>Freezer</md-opion>
+            </md-select>
+          </md-input-container>      
+
+          <div layout="row" layout-align="space-between center">
+            <md-input-container>
+              <label>Purchased</label>
+              <md-datepicker ng-model="home.new.purchaseData"></md-datepicker>
+            </md-input-container>
+
+            <md-input-container>
+              <label>Expired</label>
+              <md-datepicker ng-model="home.new.expirationData"></md-datepicker>
+            </md-input-container>      
+          </div>
+
+        </md-card-content>
+        <md-button ng-click="home.addNewItem()" class="md-raised md-primary">Add</md-button>
+      </md-card>
+
+    </div>
+
+  </ion-content>
+
+
+
+
+</ion-view>

@@ -1,7 +1,7 @@
 angular.module('starter.controllers-home', [])
 
 .controller('HomeCtrl', function($http, $ionicModal, $scope, $state, $ionicHistory, 
-	$ionicListDelegate, $timeout, $mdDialog) {
+	$ionicListDelegate, $timeout, $mdDialog, $state) {
 
 	var ctrl = this;
 
@@ -9,6 +9,8 @@ angular.module('starter.controllers-home', [])
 		getAllItems();
 	}
 
+  ctrl.category_id = $state.params.id
+  console.log(ctrl.category_id)
 
 	ctrl.categories = {
 		1 : "Vegetables",
@@ -70,18 +72,16 @@ angular.module('starter.controllers-home', [])
   // ---------------------------------------------------------  
 
 
-  ctrl.edit = function (id) {
+  ctrl.edit = function (data) {
   	$ionicListDelegate.closeOptionButtons()
-	// var url = "http://localhost:3000/api/ingredients/";
-	// var data = {
-	// 	name : 'Carrot'
-	// }
+    console.log(data.id)
+  	var url = "http://localhost:3000/api/ingredients/";
 
-	// $http.patch(url + id , data).then(function (success) {
-	// 	console.log(success)
-	// }, function (err) {
-	// 	console.log(err)
-	// })	
+  	$http.patch(url + data.id , data).then(function (success) {
+  		console.log(success)
+  	}, function (err) {
+  		console.log(err)
+  	})	
   }
 
   ctrl.showPrompt = function(event, item) {
@@ -135,6 +135,7 @@ angular.module('starter.controllers-home', [])
     $mdDialog.cancel();
     $ionicListDelegate.closeOptionButtons()
   	console.log($scope.edit_item)
+    ctrl.edit($scope.edit_item);
   }
 
 

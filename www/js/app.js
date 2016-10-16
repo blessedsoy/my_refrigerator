@@ -30,7 +30,7 @@ angular.module('starter', [
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
 
   // Ionic uses AngularUI Router which uses the concept of states
@@ -65,6 +65,17 @@ angular.module('starter', [
     }
   })
 
+  .state('tab.category', {
+    url: '/category/:id',
+    views: {
+      'tab-home': {
+        templateUrl: 'templates/home/category.html',
+        controller: 'HomeCtrl as home'
+      }
+    }
+  })
+
+
   .state('tab.new', {
     url: '/new',
     views: {
@@ -87,5 +98,5 @@ angular.module('starter', [
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/home');
-
+  $ionicConfigProvider.backButton.previousTitleText(false).text('');
 });

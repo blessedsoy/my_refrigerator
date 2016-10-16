@@ -10,15 +10,29 @@
             <input name = "name" ng-model="edit_item.name" type="text" placeholder="Name (required)" ng-required="true">
           </md-input-container>
 
-          <md-input-container class="md-block">
-            
-            <input name = "category" ng-model="categories[edit_item.category_id]" type="text" placeholder="Category (required)" ng-required="true">
-            
+          <md-input-container class="md-block" flex-gt-sm="">
+              <label>Category</label>
+              <md-select ng-model="edit_item.category_id" placeholder="Category(required)" class="md-no-underline">
+                <md-option value=1>Vegetable</md-option>
+                <md-option value=2>Fruits</md-option>
+                <md-option value=3>Meat</md-option>
+                <md-option value=4>Dairy</md-option>
+                <md-option value=5>Fish</md-option>
+                <md-option value=6>Cooked Foods</md-option>
+                <md-option value=7>Fermented Foods</md-option>
+                <md-option value=8>Drinks</md-option>
+                <md-option value=9>Sauce or Salad Dressings</md-option>
+                <md-option value=10>Etc.</md-option>
+              </md-select>
           </md-input-container>
+      
 
-          <md-input-container class="md-block">
-            
-            <input name = "where" ng-model="edit_item.in_freezer" type="text" placeholder="Where (required)" ng-required="true">
+          <md-input-container class="md-block" flex-gt-sm="">
+            <label>Where</label>
+            <md-select ng-model="edit_item.in_freezer" placeholder="Where (required)" class="md-no-underline" >
+                <md-option value=false>Fridge</md-option>
+                <md-option value=true>Freezer</md-option>
+            </md-select>
             
           </md-input-container>
 

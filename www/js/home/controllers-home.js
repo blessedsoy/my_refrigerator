@@ -1,7 +1,7 @@
 angular.module('starter.controllers-home', [])
 
 .controller('HomeCtrl', function($http, $ionicModal, $scope, $state, $ionicHistory, 
-	$ionicListDelegate, $timeout, $mdDialog, $state) {
+	$ionicListDelegate, $timeout, $mdDialog, $state, $mdDateLocale) {
 
 	var ctrl = this;
 
@@ -10,8 +10,7 @@ angular.module('starter.controllers-home', [])
 	}
 
   ctrl.category_id = $state.params.id
-  console.log(ctrl.category_id)
-
+  
 	ctrl.categories = {
 		1 : "Vegetables",
 		2 : "Fruites",
@@ -24,6 +23,12 @@ angular.module('starter.controllers-home', [])
 		9 : "Sauce or Salad Dressings",
 		10 : "Etc."
 	}
+
+	ctrl.new = {};	
+
+  // $mdDateLocale.formatDate = function(date) {
+  //   return moment(date).format('YYYY-MM-DD');
+  // };	
 
 	function getAllItems () {
 		var url = "http://localhost:3000/api/ingredients";
@@ -50,16 +55,30 @@ angular.module('starter.controllers-home', [])
 
 
   ctrl.addNewItem = function () {
+
+  	
+  	if(ctrl.purchaseDate){
+	  	var date = ctrl.purchaseDate;
+	  	var result = date ? moment(date).format('YYYY-MM-DD') : null
+	  	ctrl.new.purchase_date = result;
+  	}
+
+  	if(ctrl.expirationDate){
+	  	var date_expiration = ctrl.expirationDate;
+	  	var result_expiration =  date_expiration ? moment(date_expiration).format('YYYY-MM-DD') : null
+	  	ctrl.new.expiration_date = result_expiration;
+  	}
+
+
 	var url = "http://localhost:3000/api/ingredients/";
 	var data = ctrl.new
+	console.log()
 
 	$http.post(url, data).then(function (success) {
 		
 		$ionicHistory.goBack();
-		$timeout(function(){
-			ctrl.refresh();
-		},1000)
-		
+		ctrl.refresh();
+	
 	}, function (err) {
 		console.log(err)
 	})  	

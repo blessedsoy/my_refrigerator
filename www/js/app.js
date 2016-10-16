@@ -11,7 +11,8 @@ angular.module('starter', [
   'starter.controllers-account',
   'ngMaterial',
   'ngMessages',
-  'ngAnimate'
+  'ngAnimate',
+  'angularMoment'
   ])
 
 .run(function($ionicPlatform) {

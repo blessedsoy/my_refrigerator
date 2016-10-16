@@ -1,4 +1,4 @@
-<ion-view view-title="My Refrigerator">
+<ion-view view-title="My Refrigerator" cache-view="false">
 
     <ion-nav-buttons side="secondary">
       <button class="button" ng-click="home.newItem()">
@@ -18,8 +18,8 @@
 					<ion-item class="no_white_space">
 						<strong>Name</strong> : {{item.name}} <br>
 						<strong>Category</strong> : {{home.categories[item.category_id]}} <br>
-						<span ng-if="item.purchaged_date">
-							<strong>Purchased</strong> :{{item.purchased_date}} <br>	
+						<span ng-if="item.purchase_date">
+							<strong>Purchased</strong> :{{item.purchase_date}} <br>	
 						</span>
 						<span ng-if="item.expiration_date">
 							<strong>Expiration</strong> : {{item.expiration_date}}	
@@ -39,8 +39,8 @@
 						<ion-item class="no_white_space" ng-if="!(item.in_freezer === true)">
 							<strong>Name</strong> : {{item.name}} <br>
 							<strong>Category</strong> : {{home.categories[item.category_id]}} <br>
-							<span ng-if="item.purchaged_date">
-								<strong>Purchased</strong> :{{item.purchased_date}} <br>	
+							<span ng-if="item.purchase_date">
+								<strong>Purchased</strong> :{{item.purchase_date}} <br>	
 							</span>
 							<span ng-if="item.expiration_date">
 								<strong>Expiration</strong> : {{item.expiration_date}}	
@@ -59,8 +59,8 @@
 							<ion-item class="no_white_space" ng-if="item.in_freezer === true">
 								<strong>Name</strong> : {{item.name}} <br>
 								<strong>Category</strong> : {{home.categories[item.category_id]}} <br>
-								<span ng-if="item.purchaged_date">
-									<strong>Purchased</strong> :{{item.purchased_date}} <br>	
+								<span ng-if="item.purchase_date">
+									<strong>Purchased</strong> :{{item.purchase_date}} <br>	
 								</span>
 								<span ng-if="item.expiration_date">
 									<strong>Expiration</strong> : {{item.expiration_date}}	

@@ -35,18 +35,19 @@
             </md-select>
             
           </md-input-container>
+          
+      
+          <div layout="row" layout-align="space-between center">
+            <md-input-container>
+              <label>Purchased</label>
+              <md-datepicker ng-model="edit_item.purchase_date"></md-datepicker>
+            </md-input-container>
 
-          <md-input-container class="md-block">
-            
-            <input name = "purchase date" ng-model="edit_item.purchase_date" type="text" placeholder="Purchase date">
-            
-          </md-input-container>
-
-          <md-input-container class="md-block">
-            
-            <input name = "expiration date" ng-model="edit_item.expiration_date" type="text" placeholder="Expiration date">
-            
-          </md-input-container>                              
+            <md-input-container>
+              <label>Expired</label>
+              <md-datepicker ng-model="edit_item.expiration_date"></md-datepicker>
+            </md-input-container>      
+          </div>                         
   
       </div>
     </md-dialog-content>

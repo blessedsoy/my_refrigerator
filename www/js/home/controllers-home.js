@@ -13,7 +13,7 @@ angular.module('starter.controllers-home', [])
   
 	ctrl.categories = {
 		1 : "Vegetables",
-		2 : "Fruites",
+		2 : "Fruits",
 		3 : "Meat", 
 		4 : "Dairy",
 		5 : "Fish",
@@ -93,9 +93,7 @@ angular.module('starter.controllers-home', [])
 
   ctrl.edit = function (data) {
   	$ionicListDelegate.closeOptionButtons()
-    console.log(data.id)
   	var url = "http://localhost:3000/api/ingredients/";
-
   	$http.patch(url + data.id , data).then(function (success) {
   		console.log(success)
   	}, function (err) {
@@ -103,9 +101,10 @@ angular.module('starter.controllers-home', [])
   	})	
   }
 
-  ctrl.showPrompt = function(event, item) {
+  ctrl.editButton = function(event, item) {
 
   	$scope.edit_item = item;
+    console.log(item)
 
     $mdDialog.show({
       controller: DialogController,
@@ -150,10 +149,23 @@ angular.module('starter.controllers-home', [])
    
   };
 
-  $scope.edit_confirm = function () {
+  $scope.edit_confirm = function (item) {
+    $scope.edit_item = item
     $mdDialog.cancel();
     $ionicListDelegate.closeOptionButtons()
-  	console.log($scope.edit_item)
+
+    if(item.purchase_date){
+      var date = item.purchase_date;
+      var result = date ? moment(date).format('YYYY-MM-DD') : null
+      $scope.edit_item.purchase_date = result;
+    }
+
+    if(item.expiration_date){
+      var date_expiration = item.expiration_date;
+      var result_expiration =  date_expiration ? moment(date_expiration).format('YYYY-MM-DD') : null
+      $scope.edit_item.expiration_date = result_expiration;
+    }
+
     ctrl.edit($scope.edit_item);
   }
 

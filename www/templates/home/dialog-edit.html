@@ -48,7 +48,7 @@
               <md-datepicker ng-model="edit_item.expiration_date"></md-datepicker>
             </md-input-container>      
           </div>                         
-  
+          
       </div>
     </md-dialog-content>
 
@@ -57,7 +57,7 @@
       <md-button ng-click="cancel()">
        Cancel
       </md-button>
-      <md-button ng-disabled = "confirm.$invalid" ng-click="edit_confirm()" md-autofocus>
+      <md-button ng-disabled = "confirm.$invalid" ng-click="edit_confirm(edit_item)" md-autofocus>
         Confirm
       </md-button>
     </md-dialog-actions>

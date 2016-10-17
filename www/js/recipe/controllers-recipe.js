@@ -26,6 +26,28 @@ angular.module('starter.controllers-recipe', [])
 
   // ---------------------------------------------------------
   //
+  // Get All Recipe
+  //
+  // ---------------------------------------------------------
+
+  HomeService.getAllRecipes().then(function (res) {
+  	if(res.status === 200 & res.data.length > 0){
+  		console.log(res.data)
+  		ctrl.allRecipes = res.data
+  	}
+  	
+  },function (error) {
+  	console.log(error)
+  })
+
+  // ---------------------------------------------------------
+  //
+  // New Recipe
+  //
+  // ---------------------------------------------------------  	
+
+  // ---------------------------------------------------------
+  //
   // New Recipe
   //
   // ---------------------------------------------------------
@@ -142,7 +164,7 @@ angular.module('starter.controllers-recipe', [])
 	 		if(res.status === 200){
 	 			if(res.data.recipe){
 	 				console.log(res.data)
-	 				showDialog(res.data.recipe)	 				
+	 				ctrl.showDialog(res.data.recipe)	 				
 	 			}else{
 					console.log('no result')
 	 			}
@@ -152,36 +174,18 @@ angular.module('starter.controllers-recipe', [])
 	 	}) 
 	 };
 
-	function showDialog (recipe) {
+	ctrl.showDialog = function (recipe) {
 	  	ctrl.theRecipe = recipe
 	  
 	    $mdDialog.show({
-	      	// controller: DialogController,
 	      	templateUrl: 'templates/recipe/detail.html',
 	     	parent: angular.element(document.body),
-	     	// targetEvent: event,
 	     	clickOutsideToClose:false,
 	     	scope: $scope,
     		preserveScope: true,
      		clickOutsideToClose: true,
      		escapeToClose: true	      
-	      // scope: $scope.$new()
 	    })
-        .then(function(answer) {
-          console.log(answer)
-        }, function() {
-          
-        });
-
-	   //  function DialogController($scope, $mdDialog, scope) {
-		 	// $scope = scope;
-		 	// $scope.hide = function() {
-		  //   	$mdDialog.hide();
-		  // 	};
-		  // 	$scope.cancel = function() {
-		  //   	$mdDialog.cancel();
-		  // 	};
-	   //  }
 	}
 
 	ctrl.cancel = function () {
@@ -209,11 +213,12 @@ angular.module('starter.controllers-recipe', [])
 	
 	$http.post(url, data).then(function (success) {
 		
-		$ionicHistory.goBack();
-		ctrl.refresh();
+		// $ionicHistory.goBack();
+		$mdDialog.cancel();
 	
 	}, function (err) {
 		console.log(err)
+
 	})    	
   }
 

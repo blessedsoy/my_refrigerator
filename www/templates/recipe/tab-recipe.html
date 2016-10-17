@@ -7,19 +7,28 @@
     </ion-nav-buttons>
  
 	<ion-content>
-		<ion-list ng-repeat="item in recipe.allItems">
+		<ion-list ng-repeat="item in recipe.allRecipes">
 			<ion-item class="no_white_space">
-				<strong>Name</strong> : {{item.name}} <br>
-				<strong>Category</strong> : {{home.categories[item.category_id]}} <br>
-				<span ng-if="item.purchase_date">
-					<strong>Purchased</strong> :{{item.purchase_date}} <br>	
-				</span>
-				<span ng-if="item.expiration_date">
-					<strong>Expiration</strong> : {{item.expiration_date}}	
-				</span>
-				
-			    <ion-option-button ng-click="home.showPrompt(event, item)" class="button button-edit">Edit</ion-option-button>
-			    <ion-option-button ng-click="home.delete(item.id)" class="button button-delete">Delete</ion-option-button>
+	        
+                <md-card>
+                  <md-card-title>
+                    <md-card-title-text>
+                      <span class="md-headline">{{item.title}}</span>
+                      <!-- <span class="md-subhead">Large</span> -->
+                    </md-card-title-text>
+                    <md-card-title-media>
+                      <div class="md-media-lg card-media">
+                        <img ng-src="{{item.image_url}}" alt="">
+                      </div>
+                    </md-card-title-media>
+                  </md-card-title>
+
+                  <md-card-actions layout="row" layout-align="end center">
+                    <md-button ng-click="recipe.showDialog(item)">Detail</md-button>
+                    <md-button ng-click="">Delete</md-button>
+                  </md-card-actions>
+                </md-card>        
+                              
 			</ion-item>
 
 		</ion-list>

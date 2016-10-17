@@ -1,0 +1,37 @@
+
+<md-dialog aria-label="Recipe Detail">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Recipe Detail</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="recipe.cancel()">
+          <md-icon aria-label="Close dialog"><i class="icon ion-close"></i></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <h3 style="text-aling:center">{{recipe.theRecipe.title}}</h3>  
+        
+        <img style="margin: auto; max-width: 100%;" alt="image" ng-src="{{recipe.theRecipe.image_url}}">
+
+        <h4>Ingredients</h4>
+        <ol ng-repeat="item in recipe.theRecipe.ingredients track by $index">
+          <li> {{item}} </li>  
+        </ol>
+        
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <md-button ng-click="recipe.saveRecipe()">
+       Save
+      </md-button>
+      <md-button ng-click="recipe.openInAppBrowser(recipe.theRecipe.source_url)">
+        Directions
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

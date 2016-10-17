@@ -1,4 +1,4 @@
-<md-dialog aria-label=""  ng-cloak>
+<md-dialog aria-label="">
   <form name="confirm">
     <md-dialog-content>
       <div class="md-dialog-content">
@@ -7,12 +7,12 @@
         
           <md-input-container class="md-block">
             
-            <input name = "name" ng-model="edit_item.name" type="text" placeholder="Name (required)" ng-required="true">
+            <input name = "name" ng-model="home.edit_item.name" type="text" placeholder="Name (required)" ng-required="true">
           </md-input-container>
 
           <md-input-container class="md-block" flex-gt-sm="">
               <label>Category</label>
-              <md-select ng-model="edit_item.category_id" placeholder="Category(required)" class="md-no-underline">
+              <md-select ng-model="home.edit_item.category_id" placeholder="Category(required)" class="md-no-underline">
                 <md-option value=1>Vegetable</md-option>
                 <md-option value=2>Fruits</md-option>
                 <md-option value=3>Meat</md-option>
@@ -29,7 +29,7 @@
 
           <md-input-container class="md-block" flex-gt-sm="">
             <label>Where</label>
-            <md-select ng-model="edit_item.in_freezer" placeholder="Where (required)" class="md-no-underline" >
+            <md-select ng-model="home.edit_item.in_freezer" placeholder="Where (required)" class="md-no-underline" >
                 <md-option value=false>Fridge</md-option>
                 <md-option value=true>Freezer</md-option>
             </md-select>
@@ -40,12 +40,12 @@
           <div layout="row" layout-align="space-between center">
             <md-input-container>
               <label>Purchased</label>
-              <md-datepicker ng-model="edit_item.purchase_date"></md-datepicker>
+              <md-datepicker ng-model="home.edit_item.purchase_date"></md-datepicker>
             </md-input-container>
 
             <md-input-container>
               <label>Expired</label>
-              <md-datepicker ng-model="edit_item.expiration_date"></md-datepicker>
+              <md-datepicker ng-model="home.edit_item.expiration_date"></md-datepicker>
             </md-input-container>      
           </div>                         
           
@@ -54,10 +54,11 @@
 
     <md-dialog-actions layout="row">
       
-      <md-button ng-click="cancel()">
+      <md-button ng-click="home.cancel()">
        Cancel
       </md-button>
-      <md-button ng-disabled = "confirm.$invalid" ng-click="edit_confirm(edit_item)" md-autofocus>
+
+      <md-button ng-disabled = "confirm.$invalid" ng-click="home.edit_confirm()">
         Confirm
       </md-button>
     </md-dialog-actions>

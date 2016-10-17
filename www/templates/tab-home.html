@@ -19,10 +19,10 @@
 						<strong>Name</strong> : {{item.name}} <br>
 						<strong>Category</strong> : {{home.categories[item.category_id]}} <br>
 						<span ng-if="item.purchase_date">
-							<strong>Purchased</strong> :{{item.purchase_date}} <br>	
+							<strong>Purchased</strong> : {{item.purchase_date | date:"MM-dd-yyyy"}} <br>	
 						</span>
 						<span ng-if="item.expiration_date">
-							<strong>Expiration</strong> : {{item.expiration_date}}	
+							<strong>Expiration</strong> : {{item.expiration_date | date:"MM-dd-yyyy"}}	
 						</span>
 						
 					    <ion-option-button ng-click="home.editButton(event, item)" class="button button-edit">Edit</ion-option-button>
@@ -40,7 +40,7 @@
 							<strong>Name</strong> : {{item.name}} <br>
 							<strong>Category</strong> : {{home.categories[item.category_id]}} <br>
 							<span ng-if="item.purchase_date">
-								<strong>Purchased</strong> :{{item.purchase_date}} <br>	
+								<strong>Purchased</strong> : {{item.purchase_date}} <br>	
 							</span>
 							<span ng-if="item.expiration_date">
 								<strong>Expiration</strong> : {{item.expiration_date}}	

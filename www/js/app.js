@@ -7,12 +7,16 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', [
   'ionic', 
-  'starter.controllers-home', 
-  'starter.controllers-account',
+  'ngCordova',
+
   'ngMaterial',
   'ngMessages',
   'ngAnimate',
-  'angularMoment'
+  'angularMoment',
+
+  'starter.controllers-home', 
+  'starter.controllers-account',
+  'starter.controllers-recipe',  
   ])
 
 .run(function($ionicPlatform) {
@@ -31,7 +35,7 @@ angular.module('starter', [
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, $mdDateLocaleProvider) {
 
 
   // Ionic uses AngularUI Router which uses the concept of states
@@ -76,7 +80,6 @@ angular.module('starter', [
     }
   })
 
-
   .state('tab.new', {
     url: '/new',
     views: {
@@ -87,17 +90,29 @@ angular.module('starter', [
     }
   })  
 
-  .state('tab.account', {
-    url: '/account',
+  .state('tab.recipes', {
+    url: '/recipes',
     views: {
-      'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
+      'tab-recipes': {
+        templateUrl: 'templates/recipe/tab-recipe.html',
+        controller: 'RecipeCtrl as recipe'
       }
     }
-  });
+  })
+
+  .state('tab.newRecipe', {
+    url: '/newRecipe',
+    views: {
+      'tab-recipes': {
+        templateUrl: 'templates/recipe/new-recipe.html',
+        controller: 'RecipeCtrl as recipe'
+      }
+    }
+  })    
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/home');
   $ionicConfigProvider.backButton.previousTitleText(false).text('');
+
+
 });

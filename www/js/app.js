@@ -35,7 +35,7 @@ angular.module('starter', [
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, $mdDateLocaleProvider) {
 
 
   // Ionic uses AngularUI Router which uses the concept of states
@@ -113,4 +113,11 @@ angular.module('starter', [
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/home');
   $ionicConfigProvider.backButton.previousTitleText(false).text('');
+
+  $mdDateLocaleProvider.parseDate = function(dateString) {
+    console.log(dateString)
+    var m = moment(dateString, 'L', true);
+    return m.isValid() ? m.toDate() : new Date(NaN);
+  };
+
 });

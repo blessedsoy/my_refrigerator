@@ -26,13 +26,11 @@ angular.module('starter.controllers-home', [])
 
 	ctrl.new = {};	
 
-  // $mdDateLocale.formatDate = function(date) {
-  //   return moment(date).format('YYYY-MM-DD');
-  // };	
 
 	function getAllItems () {
 		HomeService.getAllItems().then(function (success) {
 			ctrl.allItems = success.data
+			console.log(success.data)
 		}, function (err) {
 			console.log(err)
 		})
@@ -71,8 +69,7 @@ angular.module('starter.controllers-home', [])
 
 	var url = "http://localhost:3000/api/ingredients/";
 	var data = ctrl.new
-	console.log()
-
+	
 	$http.post(url, data).then(function (success) {
 		
 		$ionicHistory.goBack();
@@ -84,6 +81,9 @@ angular.module('starter.controllers-home', [])
   }
 
 
+
+
+
   // ---------------------------------------------------------
   //
   // Edit item
@@ -93,7 +93,17 @@ angular.module('starter.controllers-home', [])
 
   ctrl.edit = function (data) {
   	$ionicListDelegate.closeOptionButtons()
-    console.log(data.id)
+   
+  	if(data.purchase_date){
+	  	var result = moment(data.purchase_date).format('YYYY-MM-DD');
+	  	data.purchase_date = result;
+  	}
+
+  	if(data.expiration_date){
+	  	var result_expiration = moment(data.expiration_date).format('YYYY-MM-DD');
+	  	data.expiration_date = result_expiration;
+  	}
+
   	var url = "http://localhost:3000/api/ingredients/";
 
   	$http.patch(url + data.id , data).then(function (success) {
@@ -105,60 +115,48 @@ angular.module('starter.controllers-home', [])
 
   ctrl.showPrompt = function(event, item) {
 
-  	$scope.edit_item = item;
+  	// $scope.edit_item = item;
 
-  	$scope.edit_item.purchaseDate = item.purchase_date;
+  	ctrl.edit_item = item
 
+
+  	if(ctrl.edit_item.expiration_date){
+  		ctrl.edit_item.expiration_date = new Date(moment(item.expiration_date))
+
+  	}
+  	if(ctrl.edit_item.purchase_date){
+  		ctrl.edit_item.purchase_date = new Date(moment(item.purchase_date))
+  	}	
+  
     $mdDialog.show({
-      controller: DialogController,
+      // controller: DialogController,
       templateUrl: 'templates/home/dialog-edit.html',
       parent: angular.element(document.body),
       targetEvent: event,
       clickOutsideToClose:false,
-      scope: $scope.$new()
+      // scope: $scope.$new()
+      scope: $scope,
+      preserveScope: true,
     })
     .then(function(answer) {
       
     }, function() {
       
     });
-
-
-    function DialogController($scope, $mdDialog, scope) {
-	 	$scope = scope;
-	 	$scope.hide = function() {
-	    	$mdDialog.hide();
-	  	};
-	  	$scope.cancel = function() {
-	    	$mdDialog.cancel();
-        $ionicListDelegate.closeOptionButtons()
-
-	  	};
-
-		$scope.categories = {
-			1 : "Vegetables",
-			2 : "Fruites",
-			3 : "Meat", 
-			4 : "Dairy",
-			5 : "Fish",
-			6 : "Cooked Foods",
-			7 : "Fermented Foods",
-			8 : "Drinks",
-			9 : "Sauce or Salad Dressings",
-			10 : "Etc."
-		}
-
-    }
    
   };
 
-  $scope.edit_confirm = function () {
-    $mdDialog.cancel();
-    $ionicListDelegate.closeOptionButtons()
-  	console.log($scope.edit_item)
-    ctrl.edit($scope.edit_item);
+  ctrl.cancel = function () {
+  	$mdDialog.cancel();
+  	$ionicListDelegate.closeOptionButtons();
   }
 
+  ctrl.edit_confirm = function () {
+    $mdDialog.cancel();
+    $ionicListDelegate.closeOptionButtons()
+    ctrl.edit(ctrl.edit_item);
+    ctrl.edit_item;
+  }
 
 
   // ---------------------------------------------------------

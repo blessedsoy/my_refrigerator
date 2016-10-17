@@ -1,7 +1,8 @@
 angular.module('starter.controllers-recipe', [])
 
 .controller('RecipeCtrl', function($http, $ionicModal, $scope, $state, $ionicHistory, 
-	$ionicListDelegate, $timeout, $mdDialog, $state, $mdDateLocale, HomeService, $mdDialog) {
+	$ionicListDelegate, $timeout, $mdDialog, $state, $mdDateLocale, HomeService, 
+	$mdDialog, $cordovaInAppBrowser) {
 
 	var ctrl = this;
 
@@ -103,6 +104,11 @@ angular.module('starter.controllers-recipe', [])
 
   }
 
+  ctrl.openInAppBrowser = function (url) {
+  	window.open(url, '_blank', 'location=no')
+  }
+
+
   // ---------------------------------------------------------
   //
   // Detail dialog
@@ -143,8 +149,7 @@ angular.module('starter.controllers-recipe', [])
 
 	function showDialog (recipe) {
 	  	ctrl.theRecipe = recipe
-	  	// $scope.recipe = recipe;
-
+	  
 	    $mdDialog.show({
 	      	// controller: DialogController,
 	      	templateUrl: 'templates/recipe/detail.html',
@@ -174,8 +179,8 @@ angular.module('starter.controllers-recipe', [])
 	   //  }
 	}
 
-	ctrl.hide = function () {
-		$mdDialog.hide();
+	ctrl.cancel = function () {
+		$mdDialog.cancel();
 	}
 
 

@@ -42,24 +42,44 @@
         <md-button ng-click="recipe.findRecipe()" class="md-raised md-primary">Find</md-button>
       </md-card>
 
-      <div ng-repeat = "item in recipe.recipes">
-        <md-card>
-          <md-card-title>
-            <md-card-title-text>
-              <span class="md-headline">{{item.title}}</span>
-              <!-- <span class="md-subhead">Large</span> -->
-            </md-card-title-text>
-            <md-card-title-media>
-              <div class="md-media-lg card-media">
-                <img ng-src="{{item.image_url}}" alt="">
-              </div>
-            </md-card-title-media>
-          </md-card-title>
-          <md-card-actions layout="row" layout-align="end center">
-            <md-button ng-click="recipe.showDetail(item.recipe_id)">Detail</md-button>
-          </md-card-actions>
-        </md-card>        
-      </div>         
+      <div ng-switch="recipe.loading">
+        
+        <div ng-switch-when="true" style="width: 100vw; text-align: center; margin: 20px 0px">
+            <ion-spinner></ion-spinner>
+        </div>          
+        
+        <div ng-switch-when="false">
+          
+          <div ng-switch="recipe.gotResult">
+            
+            <div ng-switch-when="true">
+              <div ng-repeat = "item in recipe.recipes">
+                <md-card>
+                  <md-card-title>
+                    <md-card-title-text>
+                      <span class="md-headline">{{item.title}}</span>
+                      <!-- <span class="md-subhead">Large</span> -->
+                    </md-card-title-text>
+                    <md-card-title-media>
+                      <div class="md-media-lg card-media">
+                        <img ng-src="{{item.image_url}}" alt="">
+                      </div>
+                    </md-card-title-media>
+                  </md-card-title>
+                  <md-card-actions layout="row" layout-align="end center">
+                    <md-button ng-click="recipe.showDetail(item.recipe_id)">Detail</md-button>
+                  </md-card-actions>
+                </md-card>        
+              </div>                
+            </div>
+            <div ng-switch-when="false">
+              <h5 style="text-align:center">Sorry, there is no result <br> Please, try again</h5>
+            </div>
+          </div>
+
+        </div>
+      </div>
+       
 
       
 

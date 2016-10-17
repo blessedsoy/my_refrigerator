@@ -114,10 +114,5 @@ angular.module('starter', [
   $urlRouterProvider.otherwise('/tab/home');
   $ionicConfigProvider.backButton.previousTitleText(false).text('');
 
-  $mdDateLocaleProvider.parseDate = function(dateString) {
-    console.log(dateString)
-    var m = moment(dateString, 'L', true);
-    return m.isValid() ? m.toDate() : new Date(NaN);
-  };
 
 });

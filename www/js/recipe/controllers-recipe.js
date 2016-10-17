@@ -6,6 +6,8 @@ angular.module('starter.controllers-recipe', [])
 
 	var ctrl = this;
 
+	ctrl.loading = false;
+
 	ctrl.refresh = function () {
 		getAllItems();
 	}
@@ -67,6 +69,7 @@ angular.module('starter.controllers-recipe', [])
   };  
 
   ctrl.findRecipe = function () {
+  	ctrl.loading = true;
 
 	console.log(ctrl.selected)  	
 
@@ -88,13 +91,15 @@ angular.module('starter.controllers-recipe', [])
 // "https://community-food2fork.p.mashape.com/get?key=003a7677ea99d47cdeaf6baf634644f3&rId=29159";
 	          
 	$http.get(url, config).then(function(success){
-	  
 	  if(success.status === 200){
 	  	console.log(success.data)	
 	  	if(success.data.count > 0){
 	  		ctrl.recipes = success.data.recipes;	
+	  		ctrl.loading = false;
+	  		ctrl.gotResult = true;
 	  	}else{
-
+	  		ctrl.loading = false;
+	  		ctrl.gotResult = false;
 	  	}
 	  	
 	  }
@@ -186,80 +191,31 @@ angular.module('starter.controllers-recipe', [])
 
   // ---------------------------------------------------------
   //
-  // Edit item
+  // Save Recipe
   //
   // ---------------------------------------------------------  
 
 
-  ctrl.edit = function (data) {
-  	$ionicListDelegate.closeOptionButtons()
-    console.log(data.id)
-  	var url = "http://localhost:3000/api/ingredients/";
+  ctrl.saveRecipe = function () {
+  	// ctrl.selected
 
-  	$http.patch(url + data.id , data).then(function (success) {
-  		console.log(success)
-  	}, function (err) {
-  		console.log(err)
-  	})	
+	var url = "http://localhost:3000/api/recipes";
+	var data = {
+		title: ctrl.theRecipe.title,
+		image_url: ctrl.theRecipe.image_url,
+		source_url: ctrl.theRecipe.source_url,
+		ingredients_detail: ctrl.theRecipe.ingredients
+	}
+	
+	$http.post(url, data).then(function (success) {
+		
+		$ionicHistory.goBack();
+		ctrl.refresh();
+	
+	}, function (err) {
+		console.log(err)
+	})    	
   }
-
-  ctrl.showPrompt = function(event, item) {
-
-  	$scope.edit_item = item;
-
-  	$scoep.edit_item.purchaseDate = item.purchase_date;
-
-    $mdDialog.show({
-      controller: DialogController,
-      templateUrl: 'templates/home/dialog-edit.html',
-      parent: angular.element(document.body),
-      targetEvent: event,
-      clickOutsideToClose:false,
-      scope: $scope.$new()
-    })
-    .then(function(answer) {
-      
-    }, function() {
-      
-    });
-
-
-    function DialogController($scope, $mdDialog, scope) {
-	 	$scope = scope;
-	 	$scope.hide = function() {
-	    	$mdDialog.hide();
-	  	};
-	  	$scope.cancel = function() {
-	    	$mdDialog.cancel();
-        $ionicListDelegate.closeOptionButtons()
-
-	  	};
-
-		$scope.categories = {
-			1 : "Vegetables",
-			2 : "Fruites",
-			3 : "Meat", 
-			4 : "Dairy",
-			5 : "Fish",
-			6 : "Cooked Foods",
-			7 : "Fermented Foods",
-			8 : "Drinks",
-			9 : "Sauce or Salad Dressings",
-			10 : "Etc."
-		}
-
-    }
-   
-  };
-
-  $scope.edit_confirm = function () {
-    $mdDialog.cancel();
-    $ionicListDelegate.closeOptionButtons()
-  	console.log($scope.edit_item)
-    ctrl.edit($scope.edit_item);
-  }
-
-
 
   // ---------------------------------------------------------
   //

@@ -81,9 +81,6 @@ angular.module('starter.controllers-home', [])
   }
 
 
-
-
-
   // ---------------------------------------------------------
   //
   // Edit item
@@ -155,7 +152,6 @@ angular.module('starter.controllers-home', [])
     $mdDialog.cancel();
     $ionicListDelegate.closeOptionButtons()
     ctrl.edit(ctrl.edit_item);
-    ctrl.edit_item;
   }
 
 

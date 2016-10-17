@@ -9,19 +9,10 @@ angular.module('starter.controllers-recipe', [])
 	ctrl.loading = false;
 
 	ctrl.refresh = function () {
+		getAllRecipes();
 		getAllItems();
-	}
-
-  	ctrl.category_id = $state.params.id
-  
-	function getAllItems () {
-		HomeService.getAllItems().then(function (success) {
-			ctrl.allItems = success.data
-		}, function (err) {
-			console.log(err)
-		})
-	}
-
+		$scope.$broadcast('scroll.refreshComplete');
+	}  
 	ctrl.refresh();
 
   // ---------------------------------------------------------
@@ -30,21 +21,34 @@ angular.module('starter.controllers-recipe', [])
   //
   // ---------------------------------------------------------
 
-  HomeService.getAllRecipes().then(function (res) {
-  	if(res.status === 200 & res.data.length > 0){
-  		console.log(res.data)
-  		ctrl.allRecipes = res.data
-  	}
-  	
-  },function (error) {
-  	console.log(error)
-  })
+  function getAllRecipes () {
+	 HomeService.getAllRecipes().then(function (res) {
+	  	if(res.status === 200 & res.data.length > 0){
+	  		console.log(res.data)
+	  		ctrl.allRecipes = res.data
+	  	}
+	  	
+	 },function (error) {
+	  	console.log(error)
+	 })  	
+  }
+
 
   // ---------------------------------------------------------
   //
-  // New Recipe
+  // Get All Ingredients
   //
   // ---------------------------------------------------------  	
+
+	function getAllItems () {
+		HomeService.getAllItems().then(function (success) {
+			ctrl.allItems = success.data
+			console.log(success.data)
+		}, function (err) {
+			console.log(err)
+		})
+	}
+
 
   // ---------------------------------------------------------
   //
@@ -65,8 +69,9 @@ angular.module('starter.controllers-recipe', [])
   };
 
   ctrl.newRecipe = function () {
-
+  	
   	$state.go('tab.newRecipe')
+  
   }
 
   ctrl.toggle = function (item, list) {
@@ -228,11 +233,11 @@ angular.module('starter.controllers-recipe', [])
   //
   // ---------------------------------------------------------
 
- 	ctrl.delete = function (id) {
- 		$ionicListDelegate.closeOptionButtons()
-		var url = "http://localhost:3000/api/ingredients/";
+ 	ctrl.deleteRecipe = function (item) {
+ 	
+		var url = "http://localhost:3000/api/recipes/";
 
-		$http.delete(url + id).then(function (success) {
+		$http.delete(url + item.id).then(function (success) {
 			console.log(success)
 			ctrl.refresh();
 		}, function (err) {

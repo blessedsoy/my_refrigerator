@@ -1,0 +1,44 @@
+
+<md-dialog aria-label="Recipe Detail">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Recipe Detail</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="recipe.hide()">
+          <md-icon aria-label="Close dialog"><i class="icon ion-close"></i></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <h3 style="text-aling:center">{{recipe.theRecipe.title}}</h3>  
+        
+        <img style="margin: auto; max-width: 100%;" alt="image" ng-src="{{recipe.image_url}}">
+
+        <h4>How to cook</h4>
+        <ol ng-repeat="item in recipe.ingredients">
+          <li> {{item}} </li>  
+        </ol>
+        
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <!-- <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
+        More on Wikipedia
+      </md-button> -->
+      <!-- <span flex></span> -->
+      <md-button ng-click="answer('not useful')">
+       Not Useful
+      </md-button>
+      <md-button ng-click="answer('useful')">
+        Useful
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
+
+
+ <!-- href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus  -->

@@ -1,7 +1,7 @@
 angular.module('starter.controllers-home', [])
 
 .controller('HomeCtrl', function($http, $ionicModal, $scope, $state, $ionicHistory, 
-	$ionicListDelegate, $timeout, $mdDialog, $state, $mdDateLocale) {
+	$ionicListDelegate, $timeout, $mdDialog, $state, $mdDateLocale, HomeService) {
 
 	var ctrl = this;
 
@@ -31,11 +31,10 @@ angular.module('starter.controllers-home', [])
   // };	
 
 	function getAllItems () {
-		var url = "http://localhost:3000/api/ingredients";
-		$http.get(url).then(function (success) {
-			ctrl.allItems =  success.data;
-		}, function (error) {
-			console.log(error)
+		HomeService.getAllItems().then(function (success) {
+			ctrl.allItems = success.data
+		}, function (err) {
+			console.log(err)
 		})
 	}
 
@@ -84,6 +83,7 @@ angular.module('starter.controllers-home', [])
 	})  	
   }
 
+
   // ---------------------------------------------------------
   //
   // Edit item
@@ -106,6 +106,8 @@ angular.module('starter.controllers-home', [])
   ctrl.showPrompt = function(event, item) {
 
   	$scope.edit_item = item;
+
+  	$scope.edit_item.purchaseDate = item.purchase_date;
 
     $mdDialog.show({
       controller: DialogController,

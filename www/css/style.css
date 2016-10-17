@@ -46,6 +46,38 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-col
 }
 
 
+
+
+/**********************/
+/*                    */
+/*  Find recipes      */
+/*                    */
+/**********************/
+
+.checkboxdemoSelectAll .demo-select-all-checkboxes {
+  padding-left: 30px; }
+
+
+md-card md-card-title md-card-title-media .md-media-lg{
+  height: 100% !important;
+}
+
+  
+md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolbar){
+  background-color: #99b2dd;    
+}
+
+
+/*title for detail*/
+md-toolbar h2 {
+  color: white;
+  position: absolute;
+  text-align: center;
+  right: 10px;
+  left: 10px;
+}
+
+
 /**********************/
 /*                    */
 /*  Login Animation   */

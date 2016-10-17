@@ -1,0 +1,73 @@
+<ion-view>
+  <ion-nav-title>
+    <p>Find recipe</p>
+  </ion-nav-title>
+
+  <ion-content>
+
+    <div class="md-padding" ng-cloak="" layout="column">
+  
+      <md-card>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">What ingredients do you have?</span>
+            <!-- <span class="md-subhead">Choose wisely if you want to win.</span> -->
+          </md-card-title-text>
+        </md-card-title>
+
+        <md-card-content>
+
+          <div class="md-padding demo checkboxdemoSelectAll">
+            <div layout="row" layout-wrap="">
+              <div flex="100" layout="column">
+              
+                <div layout="row" layout-wrap="" flex="">
+                <div flex-xs="" flex="50">
+                  <md-checkbox aria-label="Select All" ng-checked="recipe.isChecked()" ng-click="recipe.toggleAll()">
+                    <span ng-if="recipe.isChecked()">Un-</span>Select All
+                  </md-checkbox>
+                </div>
+                  <div class="demo-select-all-checkboxes" flex="100" ng-repeat="item in recipe.allItems">
+                    <md-checkbox ng-checked="recipe.exists(item, recipe.selected)" ng-click="recipe.toggle(item, recipe.selected)">
+                     {{ item.name }}
+                    </md-checkbox>
+                  </div>
+                </div>
+              
+              </div>
+            </div>
+          </div>
+
+        </md-card-content>
+        <md-button ng-click="recipe.findRecipe()" class="md-raised md-primary">Find</md-button>
+      </md-card>
+
+      <div ng-repeat = "item in recipe.recipes">
+        <md-card>
+          <md-card-title>
+            <md-card-title-text>
+              <span class="md-headline">{{item.title}}</span>
+              <!-- <span class="md-subhead">Large</span> -->
+            </md-card-title-text>
+            <md-card-title-media>
+              <div class="md-media-lg card-media">
+                <img ng-src="{{item.image_url}}" alt="">
+              </div>
+            </md-card-title-media>
+          </md-card-title>
+          <md-card-actions layout="row" layout-align="end center">
+            <md-button ng-click="recipe.showDetail(item.recipe_id)">Detail</md-button>
+          </md-card-actions>
+        </md-card>        
+      </div>         
+
+      
+
+    </div>
+
+  </ion-content>
+
+
+
+
+</ion-view>

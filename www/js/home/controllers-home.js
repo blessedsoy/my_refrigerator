@@ -1,28 +1,14 @@
 angular.module('starter.controllers-home', [])
 
-.controller('HomeCtrl', function($http, $ionicModal, $scope, $state, $ionicHistory, 
-	$ionicListDelegate, $timeout, $mdDialog, $state, $mdDateLocale, HomeService) {
+.controller('HomeCtrl', function($http, $scope, $state, $ionicHistory, 
+	$ionicListDelegate, $timeout, $mdDialog, $state, $mdDateLocale, 
+	HomeService, $rootScope, $ionicScrollDelegate) {
 
 	var ctrl = this;
 
-	ctrl.refresh = function () {
-		getAllItems();
-	}
-
-  ctrl.category_id = $state.params.id
+  	ctrl.category_id = $state.params.id
   
-	ctrl.categories = {
-		1 : "Vegetables",
-		2 : "Fruits",
-		3 : "Meat", 
-		4 : "Dairy",
-		5 : "Fish",
-		6 : "Cooked Foods",
-		7 : "Fermented Foods",
-		8 : "Drinks",
-		9 : "Sauce or Salad Dressings",
-		10 : "Etc."
-	}
+	ctrl.categories = HomeService.categories;
 
 	ctrl.new = {};	
 
@@ -36,14 +22,31 @@ angular.module('starter.controllers-home', [])
 		})
 	}
 
+	ctrl.refresh = function () {
+		getAllItems();
+	}	
+
 	ctrl.refresh();
+
+  // ---------------------------------------------------------
+  //
+  // Listening
+  //
+  // ---------------------------------------------------------
+
+
+	$rootScope.$on('updateAllItems', function () {
+		ctrl.refresh();
+	})	
+
 
   // ---------------------------------------------------------
   //
   // New Item
   //
   // ---------------------------------------------------------
-	
+
+
 
   ctrl.newItem = function () {
 
@@ -72,7 +75,7 @@ angular.module('starter.controllers-home', [])
 	
 	$http.post(url, data).then(function (success) {
 		
-		$ionicHistory.goBack();
+		$ionicHistory.goBack();  //it goes back to the former state.
 		ctrl.refresh();
 	
 	}, function (err) {

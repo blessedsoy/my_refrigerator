@@ -1,5 +1,5 @@
-<ion-view view-title="My Refrigerator" cache-view="false">
-
+<ion-view view-title="My Refrigerator">
+<!-- cache-view="false" -->
     <ion-nav-buttons side="secondary">
       <button class="button" ng-click="home.newItem()">
         New
@@ -14,7 +14,7 @@
 	      <md-tab label="All">
 	        <md-content class="md-padding">
 	          <!-- <h1 class="md-display-2">All</h1> -->
-				<ion-list ng-repeat="item in home.allItems">
+				<ion-list ng-repeat="item in home.allItems | orderBy: '-purchase_date'">
 					<ion-item class="no_white_space">
 						<strong>Name</strong> : {{item.name}} <br>
 						<strong>Category</strong> : {{home.categories[item.category_id]}} <br>
@@ -35,7 +35,7 @@
 	      </md-tab>
 	      <md-tab label="Fridge">
 	        <md-content class="md-padding">
-	        <ion-list ng-repeat="item in home.allItems">
+	        <ion-list ng-repeat="item in home.allItems | orderBy: '-purchase_date'">
 						<ion-item class="no_white_space" ng-if="!(item.in_freezer === true)">
 							<strong>Name</strong> : {{item.name}} <br>
 							<strong>Category</strong> : {{home.categories[item.category_id]}} <br>
@@ -55,7 +55,7 @@
 	      </md-tab>
 	      <md-tab label="Freezer">
 	        <md-content class="md-padding">
-	          <ion-list ng-repeat="item in home.allItems">
+	          <ion-list ng-repeat="item in home.allItems | orderBy: '-purchase_date'">
 							<ion-item class="no_white_space" ng-if="item.in_freezer === true">
 								<strong>Name</strong> : {{item.name}} <br>
 								<strong>Category</strong> : {{home.categories[item.category_id]}} <br>
@@ -75,12 +75,16 @@
 	      <md-tab label="Category">
 	        <md-content class="md-padding">
 	           <ion-list ng-repeat="(key, value) in home.categories">
-							<ion-item class="no_white_space" href="#/tab/category/{{key}}">
-								<strong>{{value}}</strong> 
-							    <!-- <ion-option-button ng-click="home.showPrompt(event, item)" class="button button-edit">Edit</ion-option-button>
-							    <ion-option-button ng-click="home.delete(item.id)" class="button button-delete">Delete</ion-option-button> -->
-							</ion-item>
-						</ion-list>
+       		
+					<ion-item href="#/tab/category/{{key}}" class="item-icon-right">
+						<strong>{{value}}</strong> 		
+						<badge ck="key" cv="value"></badge>
+						<!-- <div ng-repeat="item in home.allItems"> -->
+						<!-- <span class="badge badge-assertive">0</span>							 -->
+						<!-- </div> -->
+						
+					</ion-item>
+				</ion-list>
 	        </md-content>
 	      </md-tab>	      
 	    </md-tabs>

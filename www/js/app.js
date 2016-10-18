@@ -17,6 +17,10 @@ angular.module('starter', [
   'starter.controllers-home', 
   'starter.controllers-account',
   'starter.controllers-recipe',  
+  'starter.controllers-addIngredient',
+  'starter.controllers-findRecipe',
+  'starter.controllers-expiration',
+
   ])
 
 .run(function($ionicPlatform) {
@@ -64,17 +68,7 @@ angular.module('starter', [
     url: '/home',
     views: {
       'tab-home': {
-        templateUrl: 'templates/tab-home.html',
-        controller: 'HomeCtrl as home'
-      }
-    }
-  })
-
-  .state('tab.category', {
-    url: '/category/:id',
-    views: {
-      'tab-home': {
-        templateUrl: 'templates/home/category.html',
+        templateUrl: 'templates/home/tab-home.html',
         controller: 'HomeCtrl as home'
       }
     }
@@ -85,10 +79,20 @@ angular.module('starter', [
     views: {
       'tab-home': {
         templateUrl: 'templates/home/new-item.html',
+        controller: 'AddIngredientCtrl as ingredient'
+      }
+    }
+  })    
+
+  .state('tab.category', {
+    url: '/category/:id',
+    views: {
+      'tab-home': {
+        templateUrl: 'templates/home/category.html',
         controller: 'HomeCtrl as home'
       }
     }
-  })  
+  })
 
   .state('tab.recipes', {
     url: '/recipes',
@@ -105,10 +109,20 @@ angular.module('starter', [
     views: {
       'tab-recipes': {
         templateUrl: 'templates/recipe/new-recipe.html',
-        controller: 'RecipeCtrl as recipe'
+        controller: 'FindRecipeCtrl as find'
       }
     }
-  })    
+  }) 
+
+  .state('tab.expiration', {
+    url: '/expiration',
+    views: {
+      'tab-expiration': {
+        templateUrl: 'templates/expiration/expiration.html',
+        controller: 'ExpirationCtrl as expiration'
+      }
+    }
+  })     
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/home');

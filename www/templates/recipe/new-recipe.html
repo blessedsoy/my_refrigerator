@@ -23,12 +23,12 @@
               
                 <div layout="row" layout-wrap="" flex="">
                 <div flex-xs="" flex="50">
-                  <md-checkbox aria-label="Select All" ng-checked="recipe.isChecked()" ng-click="recipe.toggleAll()">
-                    <span ng-if="recipe.isChecked()">Un-</span>Select All
+                  <md-checkbox aria-label="Select All" ng-checked="recipe.isChecked()" ng-click="find.toggleAll()">
+                    <span ng-if="find.isChecked()">Un-</span>Select All
                   </md-checkbox>
                 </div>
-                  <div class="demo-select-all-checkboxes" flex="100" ng-repeat="item in recipe.allItems">
-                    <md-checkbox ng-checked="recipe.exists(item, recipe.selected)" ng-click="recipe.toggle(item, recipe.selected)">
+                  <div class="demo-select-all-checkboxes" flex="100" ng-repeat="item in find.allItems">
+                    <md-checkbox ng-checked="find.exists(item, find.selected)" ng-click="find.toggle(item, find.selected)">
                      {{ item.name }}
                     </md-checkbox>
                   </div>
@@ -39,10 +39,10 @@
           </div>
 
         </md-card-content>
-        <md-button ng-click="recipe.findRecipe()" class="md-raised md-primary">Find</md-button>
+        <md-button ng-click="find.findRecipe()" class="md-raised md-primary">Find</md-button>
       </md-card>
 
-      <div ng-switch="recipe.loading">
+      <div ng-switch="find.loading">
         
         <div ng-switch-when="true" style="width: 100vw; text-align: center; margin: 20px 0px">
             <ion-spinner></ion-spinner>
@@ -50,10 +50,10 @@
         
         <div ng-switch-when="false">
           
-          <div ng-switch="recipe.gotResult">
+          <div ng-switch="find.gotResult">
             
             <div ng-switch-when="true">
-              <div ng-repeat = "item in recipe.recipes">
+              <div ng-repeat = "item in find.recipes">
                 <md-card>
                   <md-card-title>
                     <md-card-title-text>
@@ -67,7 +67,7 @@
                     </md-card-title-media>
                   </md-card-title>
                   <md-card-actions layout="row" layout-align="end center">
-                    <md-button ng-click="recipe.showDetail(item.recipe_id)">Detail</md-button>
+                    <md-button ng-click="find.showDetail(item.recipe_id)">Detail</md-button>
                   </md-card-actions>
                 </md-card>        
               </div>                
@@ -75,6 +75,7 @@
             <div ng-switch-when="false">
               <h5 style="text-align:center">Sorry, there is no result <br> Please, try again</h5>
             </div>
+            
           </div>
 
         </div>

@@ -1,0 +1,33 @@
+<ion-view>
+  <ion-nav-title>
+    <p>Expiration dates</p>
+  </ion-nav-title>
+
+  <ion-content>
+      <md-content class="md-padding">
+            <!-- <h1 class="md-display-2">All</h1> -->
+        <ion-list ng-repeat="item in expiration.allItems| orderBy: 'expiration_date'">
+          <ion-item class="no_white_space">
+            <strong>Name</strong> : {{item.name}} <br>
+            <strong>Category</strong> : {{expiration.categories[item.category_id]}} <br>
+
+            <span ng-if="item.expiration_date">
+              <strong>Expiration</strong> : {{item.expiration_date | date:"MM-dd-yyyy"}} <br>
+            </span>
+
+            <span ng-if="item.purchase_date">
+              <strong>Purchased</strong> : {{item.purchase_date | date:"MM-dd-yyyy"}}   
+            </span>            
+            
+              <!-- <ion-option-button ng-click="expiration.showPrompt(event, item)" class="button button-edit">Edit</ion-option-button>
+              <ion-option-button ng-click="expiration.delete(item.id)" class="button button-delete">Delete</ion-option-button> -->
+          </ion-item>
+
+        </ion-list>
+           
+      </md-content>
+
+  </ion-content>
+
+
+</ion-view>

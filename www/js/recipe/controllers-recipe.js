@@ -1,8 +1,8 @@
 angular.module('starter.controllers-recipe', [])
 
-.controller('RecipeCtrl', function($http, $ionicModal, $scope, $state, $ionicHistory, 
+.controller('RecipeCtrl', function($http, $ionicModal, $scope, $state, 
 	$ionicListDelegate, $timeout, $mdDialog, $state, $mdDateLocale, HomeService, 
-	$mdDialog, $cordovaInAppBrowser, $ionicScrollDelegate) {
+	$mdDialog, $cordovaInAppBrowser, $ionicScrollDelegate, UtilsService) {
 
 	var ctrl = this;
 
@@ -90,60 +90,11 @@ angular.module('starter.controllers-recipe', [])
 		$http.delete(url + item.id).then(function (success) {
 			console.log(success)
 			ctrl.refresh();
+			UtilsService.showMessage('DELETED', 1000)
 		}, function (err) {
 			console.log(err)
 		})		
 
  	}
-
-
-
-	// $scope.getList = function () {
-
-	// 	var url = "http://localhost:3000/api/ingredients";
-	// 	$http.get(url).then(function (success) {
-	// 		console.log(success.data)
-	// 	}, function (error) {
-	// 		console.log(error)
-	// 	})
-
-	// }	
-
-	// $scope.register = function (){
-	// 	var url = "http://localhost:3000/api/ingredients";
-	// 	var data = {
-	// 		name : "Apple",
-	// 		category_id: 2
-	// 	}
-
-	// 	$http.post(url, data).then(function (success) {
-	// 		console.log(success)
-	// 	}, function (err) {
-	// 		console.log(err)
-	// 	})
-	// }
-
-	// $scope.delete = function () {
-	// 	var url = "http://localhost:3000/api/ingredients/3";
-
-	// 	$http.delete(url).then(function (success) {
-	// 		console.log(success)
-	// 	}, function (err) {
-	// 		console.log(err)
-	// 	})		
-	// }
-
-	// $scope.edit = function () {
-	// 	var url = "http://localhost:3000/api/ingredients/1";
-	// 	var data = {
-	// 		name : 'Carrot'
-	// 	}
-
-	// 	$http.patch(url, data).then(function (success) {
-	// 		console.log(success)
-	// 	}, function (err) {
-	// 		console.log(err)
-	// 	})		
-	// }
 })
 

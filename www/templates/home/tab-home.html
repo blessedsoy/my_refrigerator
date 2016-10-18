@@ -75,12 +75,16 @@
 	      <md-tab label="Category">
 	        <md-content class="md-padding">
 	           <ion-list ng-repeat="(key, value) in home.categories">
-							<ion-item class="no_white_space" href="#/tab/category/{{key}}">
-								<strong>{{value}}</strong> 
-							    <!-- <ion-option-button ng-click="home.showPrompt(event, item)" class="button button-edit">Edit</ion-option-button>
-							    <ion-option-button ng-click="home.delete(item.id)" class="button button-delete">Delete</ion-option-button> -->
-							</ion-item>
-						</ion-list>
+       		
+					<ion-item href="#/tab/category/{{key}}" class="item-icon-right">
+						<strong>{{value}}</strong> 		
+						<badge ck="key" cv="value"></badge>
+						<!-- <div ng-repeat="item in home.allItems"> -->
+						<!-- <span class="badge badge-assertive">0</span>							 -->
+						<!-- </div> -->
+						
+					</ion-item>
+				</ion-list>
 	        </md-content>
 	      </md-tab>	      
 	    </md-tabs>

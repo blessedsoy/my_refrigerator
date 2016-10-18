@@ -19,6 +19,7 @@ angular.module('starter', [
   'starter.controllers-recipe',  
   'starter.controllers-addIngredient',
   'starter.controllers-findRecipe',
+  'starter.controllers-expiration',
 
   ])
 
@@ -93,8 +94,6 @@ angular.module('starter', [
     }
   })
 
-
-
   .state('tab.recipes', {
     url: '/recipes',
     views: {
@@ -113,7 +112,17 @@ angular.module('starter', [
         controller: 'FindRecipeCtrl as find'
       }
     }
-  })    
+  }) 
+
+  .state('tab.expiration', {
+    url: '/expiration',
+    views: {
+      'tab-expiration': {
+        templateUrl: 'templates/expiration/expiration.html',
+        controller: 'ExpirationCtrl as expiration'
+      }
+    }
+  })     
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/home');

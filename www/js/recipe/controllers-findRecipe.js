@@ -52,7 +52,7 @@ angular.module('starter.controllers-findRecipe', [])
   	$state.go('tab.newRecipe')
   
   }
-
+ 
   ctrl.toggle = function (item, list) {
     var idx = list.indexOf(item);
     if (idx > -1) {
@@ -111,6 +111,7 @@ angular.module('starter.controllers-findRecipe', [])
 	  }
 	}, function (error) {
 	  console.log(error)
+	  ctrl.loading = false;
 	})
 
   }
@@ -211,9 +212,8 @@ angular.module('starter.controllers-findRecipe', [])
 		console.log(success)
 		$mdDialog.cancel();
 
-		UtilsService.showMessage('SAVED', 1500)
+		UtilsService.showMessage('SAVED', 1000)
 		
-	
 	}, function (err) {
 		console.log(err)
 

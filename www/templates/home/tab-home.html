@@ -35,7 +35,7 @@
 	      </md-tab>
 	      <md-tab label="Fridge">
 	        <md-content class="md-padding">
-	        <ion-list ng-repeat="item in home.allItems">
+	        <ion-list ng-repeat="item in home.allItems | orderBy: '-purchase_date'">
 						<ion-item class="no_white_space" ng-if="!(item.in_freezer === true)">
 							<strong>Name</strong> : {{item.name}} <br>
 							<strong>Category</strong> : {{home.categories[item.category_id]}} <br>
@@ -55,7 +55,7 @@
 	      </md-tab>
 	      <md-tab label="Freezer">
 	        <md-content class="md-padding">
-	          <ion-list ng-repeat="item in home.allItems">
+	          <ion-list ng-repeat="item in home.allItems | orderBy: '-purchase_date'">
 							<ion-item class="no_white_space" ng-if="item.in_freezer === true">
 								<strong>Name</strong> : {{item.name}} <br>
 								<strong>Category</strong> : {{home.categories[item.category_id]}} <br>

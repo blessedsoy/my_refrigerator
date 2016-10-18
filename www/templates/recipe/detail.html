@@ -5,7 +5,7 @@
       <div class="md-toolbar-tools">
         <h2>Recipe Detail</h2>
         <span flex></span>
-        <md-button class="md-icon-button" ng-click="recipe.cancel()">
+        <md-button class="md-icon-button" ng-click="cancel()">
           <md-icon aria-label="Close dialog"><i class="icon ion-close"></i></md-icon>
         </md-button>
       </div>
@@ -13,23 +13,32 @@
 
     <md-dialog-content>
       <div class="md-dialog-content">
-        <h3 style="text-aling:center">{{recipe.theRecipe.title}}</h3>  
+        <h3 style="text-aling:center">{{theRecipe.title}}</h3>  
         
-        <img style="margin: auto; max-width: 100%;" alt="image" ng-src="{{recipe.theRecipe.image_url}}">
+        <img style="margin: auto; max-width: 100%;" alt="image" ng-src="{{theRecipe.image_url}}">
 
-        <h4>Ingredients</h4>
-        <ol ng-repeat="item in recipe.theRecipe.ingredients track by $index">
-          <li> {{item}} </li>  
-        </ol>
+        <div ng-if="view === 'findRecipe'">
+          <h4>Ingredients</h4>
+          <ol ng-repeat="item in theRecipe.ingredients track by $index">
+            <li> {{item}} </li>  
+          </ol>          
+        </div>
+
+        <div ng-if="view !== 'findRecipe'">
+          <h4>Ingredients</h4>
+          <ol ng-repeat="item in theRecipe.ingredients_detail track by $index">
+            <li> {{item}} </li>  
+          </ol>          
+        </div>
         
       </div>
     </md-dialog-content>
 
     <md-dialog-actions layout="row">
-      <md-button ng-click="recipe.saveRecipe()">
+      <md-button ng-if="view != 'recipe'" ng-click="find.saveRecipe()">
        Save
       </md-button>
-      <md-button ng-click="recipe.openInAppBrowser(recipe.theRecipe.source_url)">
+      <md-button ng-click="openInAppBrowser(theRecipe.source_url)">
         Directions
       </md-button>
     </md-dialog-actions>

@@ -1,7 +1,7 @@
 angular.module('starter.controllers-home', [])
 
 .controller('HomeCtrl', function($http, $ionicModal, $scope, $state, $ionicHistory, 
-	$ionicListDelegate, $timeout, $mdDialog, $state, $mdDateLocale, HomeService) {
+	$ionicListDelegate, $timeout, $mdDialog, $state, $mdDateLocale, HomeService, $rootScope) {
 
 	var ctrl = this;
 
@@ -40,10 +40,23 @@ angular.module('starter.controllers-home', [])
 
   // ---------------------------------------------------------
   //
+  // Listening
+  //
+  // ---------------------------------------------------------
+
+
+	$rootScope.$on('updateAllItems', function () {
+		ctrl.refresh();
+	})	
+
+
+  // ---------------------------------------------------------
+  //
   // New Item
   //
   // ---------------------------------------------------------
-	
+
+
 
   ctrl.newItem = function () {
 

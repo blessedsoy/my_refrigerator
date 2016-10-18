@@ -17,6 +17,9 @@ angular.module('starter', [
   'starter.controllers-home', 
   'starter.controllers-account',
   'starter.controllers-recipe',  
+  'starter.controllers-addIngredient',
+  'starter.controllers-findRecipe',
+
   ])
 
 .run(function($ionicPlatform) {
@@ -64,11 +67,21 @@ angular.module('starter', [
     url: '/home',
     views: {
       'tab-home': {
-        templateUrl: 'templates/tab-home.html',
+        templateUrl: 'templates/home/tab-home.html',
         controller: 'HomeCtrl as home'
       }
     }
   })
+
+  .state('tab.new', {
+    url: '/new',
+    views: {
+      'tab-home': {
+        templateUrl: 'templates/home/new-item.html',
+        controller: 'AddIngredientCtrl as ingredient'
+      }
+    }
+  })    
 
   .state('tab.category', {
     url: '/category/:id',
@@ -80,15 +93,7 @@ angular.module('starter', [
     }
   })
 
-  .state('tab.new', {
-    url: '/new',
-    views: {
-      'tab-home': {
-        templateUrl: 'templates/home/new-item.html',
-        controller: 'HomeCtrl as home'
-      }
-    }
-  })  
+
 
   .state('tab.recipes', {
     url: '/recipes',
@@ -105,7 +110,7 @@ angular.module('starter', [
     views: {
       'tab-recipes': {
         templateUrl: 'templates/recipe/new-recipe.html',
-        controller: 'RecipeCtrl as recipe'
+        controller: 'FindRecipeCtrl as find'
       }
     }
   })    

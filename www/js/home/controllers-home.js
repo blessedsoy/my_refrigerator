@@ -1,6 +1,10 @@
-angular.module('starter.controllers-home', [])
 
-.controller('HomeCtrl', function($http, $scope, $state, $ionicHistory, 
+angular.module('starter')
+
+.controller('HomeCtrl', HomeController)
+
+
+function HomeController ($http, $scope, $state, $ionicHistory, 
 	$ionicListDelegate, $timeout, $mdDialog, $state, $mdDateLocale, 
 	HomeService, $rootScope, $ionicScrollDelegate) {
 
@@ -242,5 +246,10 @@ angular.module('starter.controllers-home', [])
 	// 		console.log(err)
 	// 	})		
 	// }
-})
+}
+
+
+
+
+
 

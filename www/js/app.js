@@ -14,13 +14,7 @@ angular.module('starter', [
   'ngAnimate',
   'angularMoment',
 
-  'starter.controllers-home', 
   'starter.controllers-account',
-  'starter.controllers-recipe',  
-  'starter.controllers-addIngredient',
-  'starter.controllers-findRecipe',
-  'starter.controllers-expiration',
-
   ])
 
 .run(function($ionicPlatform) {

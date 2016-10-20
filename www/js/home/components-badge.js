@@ -1,5 +1,10 @@
-
-function BadgeController (HomeService) {
+var Badge = {
+templateUrl: 'templates/home/badge.html',
+  bindings: {
+    ck: '=',
+    cv: '='
+  },
+  controller: function (HomeService) {
   var ctrl = this
   var category_key = this.ck;
   var category_value = this.cv;
@@ -22,16 +27,9 @@ function BadgeController (HomeService) {
 
   getAllItems()
   
-  }
-
+  },
+  controllerAs: 'badge'
+}
 
 angular.module('starter')
-  .component('badge', {
-  templateUrl: 'templates/home/badge.html',
-  bindings: {
-    ck: '=',
-    cv: '='
-  },
-  controller: BadgeController,
-  controllerAs: 'badge'
-});
+  .component('badge', Badge)

@@ -1,5 +1,3 @@
-
-
 function HomeService($http) {
 	this.getAllItems = function () {
 		var url = "http://localhost:3000/api/ingredients";
@@ -23,7 +21,6 @@ function HomeService($http) {
 		9 : "Sauce or Salad Dressings",
 		10 : "Etc."
 	}	
-
 }
  
 angular

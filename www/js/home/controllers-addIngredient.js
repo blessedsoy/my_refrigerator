@@ -1,6 +1,4 @@
-angular.module('starter.controllers-addIngredient', [])
-
-.controller('AddIngredientCtrl', function($http, $ionicListDelegate, $rootScope, $scope, $ionicHistory) {
+function AddIngredientController ($http, $ionicListDelegate, $rootScope, $scope, $ionicHistory) {
 
 	var ctrl = this;
 
@@ -12,8 +10,6 @@ angular.module('starter.controllers-addIngredient', [])
   // New Item
   //
   // ---------------------------------------------------------
-	
-
 
   ctrl.addNewItem = function () {
   	
@@ -43,5 +39,7 @@ angular.module('starter.controllers-addIngredient', [])
   }
 
 
-})
+}
 
+angular.module('starter')
+.controller('AddIngredientCtrl', AddIngredientController)

@@ -1,6 +1,4 @@
-angular.module('starter.controllers-recipe', [])
-
-.controller('RecipeCtrl', function($http, $ionicModal, $scope, $state, 
+ function RecipeController ($http, $ionicModal, $scope, $state, 
 	$ionicListDelegate, $timeout, $mdDialog, $state, $mdDateLocale, HomeService, 
 	$mdDialog, $cordovaInAppBrowser, $ionicScrollDelegate, UtilsService) {
 
@@ -12,8 +10,6 @@ angular.module('starter.controllers-recipe', [])
 		getAllRecipes();
 		$scope.$broadcast('scroll.refreshComplete');
 	}  
-	ctrl.refresh();
-
 
   // ---------------------------------------------------------
   //
@@ -34,6 +30,8 @@ angular.module('starter.controllers-recipe', [])
 	 })  	
   }
 
+  getAllRecipes()
+
   // ---------------------------------------------------------
   //
   // New Recipe
@@ -46,9 +44,15 @@ angular.module('starter.controllers-recipe', [])
 
 
 	ctrl.showDialog = function (recipe) {
+		$scope.theRecipe;
 	  	$scope.theRecipe = recipe
-	  	if(recipe.ingredients_detail){
-			$scope.theRecipe.ingredients_detail = recipe.ingredients_detail.split('|')	
+	  	if($scope.theRecipe.ingredients_detail){
+	  		if(typeof $scope.theRecipe.ingredients_detail === 'string'){
+	  			$scope.theRecipe.ingredients_detail = $scope.theRecipe.ingredients_detail.split('|')	
+	  		}else if((typeof $scope.theRecipe.ingredients_detail === 'object')){
+	  			$scope.theRecipe.ingredients_detail = $scope.theRecipe.ingredients_detail[0].split('|')	
+	  		}
+			
 	  	}
 	  
 	    $mdDialog.show({
@@ -96,5 +100,7 @@ angular.module('starter.controllers-recipe', [])
 		})		
 
  	}
-})
+}
 
+angular.module('starter')
+.controller('RecipeCtrl', RecipeController)

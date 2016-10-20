@@ -1,6 +1,4 @@
-angular.module('starter.controllers-findRecipe', [])
-
-.controller('FindRecipeCtrl', function(HomeService ,$http, $ionicListDelegate, 
+function FindRecipeController (HomeService ,$http, $ionicListDelegate, 
 	$rootScope, $scope, $ionicHistory, $mdDialog, UtilsService) {
 
 	var ctrl = this;
@@ -220,5 +218,8 @@ angular.module('starter.controllers-findRecipe', [])
 	})    	
   }
 
-})
+}
+
+angular.module('starter')
+.controller('FindRecipeCtrl', FindRecipeController)
 

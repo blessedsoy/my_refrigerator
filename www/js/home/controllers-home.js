@@ -10,7 +10,7 @@ function HomeController ($http, $scope, $state, $ionicHistory,
 
 	var ctrl = this;
 
-  	ctrl.category_id = $state.params.id
+  ctrl.category_id = $state.params.id
   
 	ctrl.categories = HomeService.categories;
 
@@ -97,19 +97,8 @@ function HomeController ($http, $scope, $state, $ionicHistory,
 
   ctrl.edit = function (data) {
   	$ionicListDelegate.closeOptionButtons()
-   
-  	if(data.purchase_date){
-	  	var result = moment(data.purchase_date).format('YYYY-MM-DD');
-	  	data.purchase_date = result;
-  	}
-
-  	if(data.expiration_date){
-	  	var result_expiration = moment(data.expiration_date).format('YYYY-MM-DD');
-	  	data.expiration_date = result_expiration;
-  	}
 
   	var url = "http://localhost:3000/api/ingredients/";
-
   	$http.patch(url + data.id , data).then(function (success) {
   		console.log(success)
   	}, function (err) {
@@ -117,7 +106,7 @@ function HomeController ($http, $scope, $state, $ionicHistory,
   	})	
   }
 
-  ctrl.showPrompt = function(event, item) {
+  ctrl.editButton = function(event, item) {
 
   	// $scope.edit_item = item;
 
@@ -149,6 +138,7 @@ function HomeController ($http, $scope, $state, $ionicHistory,
     });
    
   };
+
 
   ctrl.cancel = function () {
   	$mdDialog.cancel();

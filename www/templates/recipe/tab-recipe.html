@@ -15,8 +15,8 @@
                   <md-card-title>
                     <md-card-title-text>
                       <span class="md-headline">{{item.title}}</span>
-                      <!-- <span class="md-subhead">Large</span> -->
                     </md-card-title-text>
+
                     <md-card-title-media>
                       <div class="md-media-lg card-media">
                         <img ng-src="{{item.image_url}}" alt="">
@@ -24,7 +24,7 @@
                     </md-card-title-media>
                   </md-card-title>
 
-                  <md-card-actions layout="row" layout-align="end center">
+                  <md-card-actions layout="row" layout-align="end center"> <!-- buttons in the bottom right -->
                     <md-button ng-click="recipe.showDialog(item)">Detail</md-button>
                     <md-button ng-click="recipe.deleteRecipe(item)">Delete</md-button>
                   </md-card-actions>

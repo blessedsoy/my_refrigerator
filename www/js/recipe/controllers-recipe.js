@@ -8,7 +8,7 @@
 
 	ctrl.refresh = function () {
 		getAllRecipes();
-		$scope.$broadcast('scroll.refreshComplete');
+		$scope.$broadcast('scroll.refreshComplete'); //after pull to refresh, completes refresh 
 	}  
 
   // ---------------------------------------------------------
@@ -44,23 +44,22 @@
 
 
 	ctrl.showDialog = function (recipe) {
-		$scope.theRecipe;
 	  	$scope.theRecipe = recipe
 	  	if($scope.theRecipe.ingredients_detail){
 	  		if(typeof $scope.theRecipe.ingredients_detail === 'string'){
 	  			$scope.theRecipe.ingredients_detail = $scope.theRecipe.ingredients_detail.split('|')	
 	  		}else if((typeof $scope.theRecipe.ingredients_detail === 'object')){
 	  			$scope.theRecipe.ingredients_detail = $scope.theRecipe.ingredients_detail[0].split('|')	
-	  		}
+	  		} // for changing the format of details 
 			
 	  	}
 	  
-	    $mdDialog.show({
-	      	templateUrl: 'templates/recipe/detail.html',
+	    $mdDialog.show({ //angular material dialog 
+	      templateUrl: 'templates/recipe/detail.html',
 	     	parent: angular.element(document.body),
 	     	clickOutsideToClose:false,
 	     	scope: $scope,
-    		preserveScope: true,
+    		preserveScope: true, //ebables controller as
      		clickOutsideToClose: true,
      		escapeToClose: true	      
 	    })

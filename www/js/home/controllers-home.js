@@ -6,7 +6,7 @@ angular.module('starter.controllers-home', [])
 
 	var ctrl = this;
 
-  	ctrl.category_id = $state.params.id
+  ctrl.category_id = $state.params.id
   
 	ctrl.categories = HomeService.categories;
 

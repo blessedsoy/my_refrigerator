@@ -1,6 +1,6 @@
 angular.module('starter.controllers-account', [])
 
-.controller('AccountCtrl', function($http, $scope, Auth) {
+.controller('AccountCtrl', function($http, $scope, $auth) {
 	var ctrl = this
 
 	$('.toggle').on('click', function() {
@@ -13,22 +13,50 @@ angular.module('starter.controllers-account', [])
 		
 	ctrl.goRegister = function () {
 
-		if(ctrl.new.email && ctrl.new.password){
-			var url = "http://localhost:3000/users"
-			var data = {email: ctrl.new.email, password: ctrl.new.password}
-			// var config = {
-			//   headers: {
-			//     "Accept": "application/json"
-			//   }
-			// }			
+		// if(ctrl.new.email && ctrl.new.password){
+		// 	var url = "http://localhost:3000/auth"
+		// 	var data = {email: ctrl.new.email, password: ctrl.new.password}
+		// 	// var config = {
+		// 	//   headers: {
+		// 	//     "Accept": "application/json"
+		// 	//   }
+		// 	// }			
 
-			$http.post(url, data).then(function (success) {
-				console.log(success)
-			}, function (error) {	
-				console.log(error)
-			})			
-		}
+		// 	$http.post(url, data).then(function (success) {
+		// 		console.log(success)
+		// 	}, function (error) {	
+		// 		console.log(error)
+		// 	})			
+		// }
 
+		$auth.submitRegistration({
+		  email:                 ctrl.new.email,
+		  password:              ctrl.new.password,
+		  password_confirmation: ctrl.new.confirm_password
+		})        
+		.then(function(resp) {
+          // handle success response
+          console.log(resp)
+        })
+        .catch(function(resp) {
+          // handle error response
+          console.log(resp)
+        });
+
+	}
+
+	ctrl.login = function () {
+
+		// console.log({email: ctrl.user.email, password: ctrl.user.password})
+      $auth.submitLogin(ctrl.user)
+        .then(function(resp) {
+          // handle success response
+          console.log(resp)
+        })
+        .catch(function(resp) {
+          // handle error response
+          console.log(resp)
+        });		
 	}
 
 // 	ctrl.goRegister= function () {

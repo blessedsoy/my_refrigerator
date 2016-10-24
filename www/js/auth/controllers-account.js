@@ -7,20 +7,15 @@ angular.module('starter.controllers-account', [])
 
 	ctrl.goRegister = function () {
 
-		$auth.submitRegistration({
-		  email:                 ctrl.new.email,
-		  password:              ctrl.new.password,
-		  password_confirmation: ctrl.new.confirm_password
-		})        
-		.then(function(resp) {
-          // handle success response
-          console.log(resp)
-        })
-        .catch(function(resp) {
-          // handle error response
-          console.log(resp)
+	    Auth.register(ctrl.new, config).then(function(registeredUser) {
+            console.log(registeredUser); // => {id: 1, ect: '...'}
+        }, function(error) {
+        	console.log(error)
+            // Registration failed...
         });
-
+        $scope.$on('devise:new-registration', function(event, user) {
+            // ...
+        });
 	}
 
 	ctrl.login = function () {

@@ -8,9 +8,7 @@
 angular.module('starter', [
   'ionic', 
   'ngCordova',
-  'ng-token-auth',
-  'ipCookie',
-
+  
   'ngMaterial',
   'ngMessages',
   'ngAnimate',
@@ -35,7 +33,7 @@ angular.module('starter', [
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, $mdDateLocaleProvider, $authProvider) {
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, $mdDateLocaleProvider) {
 
 
   // Ionic uses AngularUI Router which uses the concept of states
@@ -123,12 +121,5 @@ angular.module('starter', [
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/home');
   $ionicConfigProvider.backButton.previousTitleText(false).text('');
-
-  $authProvider.configure({
-    apiUrl: 'http://localhost:3000',
-    authProviderPaths: {
-      facebook: '/auth/facebook'
-    }
-  })
 
 });

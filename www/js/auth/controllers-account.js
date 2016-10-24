@@ -1,7 +1,7 @@
 angular.module('starter.controllers-account', [])
 
 
-.controller('AccountCtrl', function($http, $scope, $auth) {
+.controller('AccountCtrl', function($http, $scope) {
 
 	var ctrl = this
 

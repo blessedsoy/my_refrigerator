@@ -5,27 +5,27 @@ templateUrl: 'templates/home/badge.html',
     cv: '='
   },
   controller: function (HomeService) {
-  var ctrl = this
-  var category_key = this.ck;
-  var category_value = this.cv;
+    var ctrl = this
+    var category_key = this.ck;
+    var category_value = this.cv;
 
-  function getAllItems () {
-    HomeService.getAllItems().then(function (success) {
-      var allItems = success.data
-      ctrl.howmany = 0;
+    function getAllItems () {
+      HomeService.getAllItems().then(function (success) {
+        var allItems = success.data
+        ctrl.howmany = 0;
 
-      for(var i = 0; i < allItems.length; i++){
-        
-        if(allItems[i].category_id == category_key){
-          ctrl.howmany += 1;
+        for(var i = 0; i < allItems.length; i++){
+          
+          if(allItems[i].category_id == category_key){
+            ctrl.howmany += 1;
+          }
         }
-      }
-    }, function (err) {
-      console.log(err)
-    })
-  }    
+      }, function (err) {
+        console.log(err)
+      })
+    }    
 
-  getAllItems()
+    getAllItems()
   
   },
   controllerAs: 'badge'

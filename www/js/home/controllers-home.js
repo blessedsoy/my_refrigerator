@@ -1,16 +1,11 @@
 
-angular.module('starter')
-
-.controller('HomeCtrl', HomeController)
-
-
 function HomeController ($http, $scope, $state, $ionicHistory, 
 	$ionicListDelegate, $timeout, $mdDialog, $state, $mdDateLocale, 
 	HomeService, $rootScope, $ionicScrollDelegate) {
 
 	var ctrl = this;
 
-  ctrl.category_id = $state.params.id
+  	ctrl.category_id = $state.params.id
   
 	ctrl.categories = HomeService.categories;
 
@@ -94,28 +89,14 @@ function HomeController ($http, $scope, $state, $ionicHistory,
   //
   // ---------------------------------------------------------  
 
-
-  ctrl.edit = function (data) {
-  	$ionicListDelegate.closeOptionButtons()
-
-  	var url = "http://localhost:3000/api/ingredients/";
-  	$http.patch(url + data.id , data).then(function (success) {
-  		console.log(success)
-  	}, function (err) {
-  		console.log(err)
-  	})	
-  }
-
   ctrl.editButton = function(event, item) {
 
   	// $scope.edit_item = item;
 
   	ctrl.edit_item = item
 
-
   	if(ctrl.edit_item.expiration_date){
   		ctrl.edit_item.expiration_date = new Date(moment(item.expiration_date))
-
   	}
   	if(ctrl.edit_item.purchase_date){
   		ctrl.edit_item.purchase_date = new Date(moment(item.purchase_date))
@@ -129,27 +110,31 @@ function HomeController ($http, $scope, $state, $ionicHistory,
       clickOutsideToClose:false,
       // scope: $scope.$new()
       scope: $scope,
-      preserveScope: true,
+      preserveScope: true,  
     })
-    .then(function(answer) {
-      
-    }, function() {
-      
-    });
-   
   };
-
-
-  ctrl.cancel = function () {
-  	$mdDialog.cancel();
-  	$ionicListDelegate.closeOptionButtons();
-  }
 
   ctrl.edit_confirm = function () {
     $mdDialog.cancel();
     $ionicListDelegate.closeOptionButtons()
     ctrl.edit(ctrl.edit_item);
   }
+
+  ctrl.edit = function (data) {
+  	$ionicListDelegate.closeOptionButtons()
+
+  	var url = "http://localhost:3000/api/ingredients/";
+  	$http.patch(url + data.id , data).then(function (success) {
+  		console.log(success)
+  	}, function (err) {
+  		console.log(err)
+  	})	
+  }  
+  
+  ctrl.cancel = function () {
+  	$mdDialog.cancel();
+  	$ionicListDelegate.closeOptionButtons();
+  }  
 
 
   // ---------------------------------------------------------
@@ -159,7 +144,7 @@ function HomeController ($http, $scope, $state, $ionicHistory,
   // ---------------------------------------------------------
 
  	ctrl.delete = function (id) {
- 		$ionicListDelegate.closeOptionButtons()
+ 		$ionicListDelegate.closeOptionButtons();
 		var url = "http://localhost:3000/api/ingredients/";
 
 		$http.delete(url + id).then(function (success) {
@@ -238,8 +223,7 @@ function HomeController ($http, $scope, $state, $ionicHistory,
 	// }
 }
 
-
-
-
+angular.module('starter')
+.controller('HomeCtrl', HomeController)
 
 

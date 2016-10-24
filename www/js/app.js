@@ -13,9 +13,7 @@ angular.module('starter', [
   'ngMaterial',
   'ngMessages',
   'ngAnimate',
-  'angularMoment',
-
-  'starter.controllers-account',
+  'angularMoment'
   ])
 
 .run(function($ionicPlatform) {
@@ -34,7 +32,7 @@ angular.module('starter', [
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, $mdDateLocaleProvider) {
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, $mdDateLocaleProvider, AuthProvider) {
 
 
   // Ionic uses AngularUI Router which uses the concept of states
@@ -122,5 +120,13 @@ angular.module('starter', [
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/home');
   $ionicConfigProvider.backButton.previousTitleText(false).text('');
+
+  AuthProvider.registerPath('http://localhost:3000/users.json');
+  AuthProvider.loginPath('http://localhost:3000/users/sign_in.json');
+  AuthProvider.logoutPath('http://localhost:3000/users/sign_out.json');
+  AuthProvider.sendResetPasswordInstructionsPath('http://localhost:3000/users/password.json');
+  // AuthProvider.resetPasswordPath('http://localhost:3000/users/password.json');
+  // AuthProvider.resetPasswordMethod('POST');  
+        
 
 });

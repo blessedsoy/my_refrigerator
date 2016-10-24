@@ -11,13 +11,14 @@ function AddIngredientController ($http, $ionicListDelegate, $rootScope, $scope,
   //
   // ---------------------------------------------------------
 
-  ctrl.addNewItem = function () {
+  ctrl.addNewItem = function () { //when you click add button on the creating ingredient form
+
   	
   	if(ctrl.purchaseDate){
 	  	var date = ctrl.purchaseDate;
 	  	var result = date ? moment(date).format('YYYY-MM-DD') : null
 	  	ctrl.new.purchase_date = result;
-  	}
+  	}// change date object to string
 
   	if(ctrl.expirationDate){
 	  	var date_expiration = ctrl.expirationDate;
@@ -31,7 +32,7 @@ function AddIngredientController ($http, $ionicListDelegate, $rootScope, $scope,
 	
 	$http.post(url, data).then(function (success) {
 		$scope.$emit('updateAllItems')    	
-		$ionicHistory.goBack();
+		$ionicHistory.goBack();  //it goes back to the former state.
 	
 	}, function (err) {
 		console.log(err)

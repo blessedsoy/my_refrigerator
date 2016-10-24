@@ -8,27 +8,28 @@
  
 	<ion-content>
 
-		<div ng-cloak=""> <!-- to avoid the flicker effect caused by the html template display, waits until all is loaded -->	  
-		    <md-tabs md-dynamic-height="" md-border-bottom="">
+		<div ng-cloak=""> <!-- to avoid the flicker effect caused by the html template display, waits until all is loaded -->
+		  
+		    <md-tabs md-dynamic-height="" md-border-bottom=""> <!-- including all tabs -->
 		      <md-tab label="All">
-		        <md-content class="md-padding">
-		          <!-- <h1 class="md-display-2">All</h1> -->
-					<ion-list ng-repeat="item in home.allItems | orderBy: '-purchase_date'">
-						<ion-item class="no_white_space">
-							<strong>Name</strong> : {{item.name}} <br>
-							<strong>Category</strong> : {{home.categories[item.category_id]}} <br>
-							<span ng-if="item.purchase_date">
-								<strong>Purchased</strong> : {{item.purchase_date | date:"MM-dd-yyyy"}} <br>	
-							</span>
-							<span ng-if="item.expiration_date">
-								<strong>Expiration</strong> : {{item.expiration_date | date:"MM-dd-yyyy"}}	
-							</span>
-							
-						    <ion-option-button ng-click="home.editButton(event, item)" class="button button-edit">Edit</ion-option-button>
-						    <ion-option-button ng-click="home.delete(item.id)" class="button button-delete">Delete</ion-option-button>
-						</ion-item>
+		        <md-content class="md-padding"><!-- angular material for tab above -->
 
-					</ion-list>
+						<ion-list ng-repeat="item in home.allItems | orderBy: '-purchase_date'"> <!-- getting all ingredients and ordered by recent purchase date -->
+							<ion-item class="no_white_space"> <!-- css class for white-space: normal -->
+								<strong>Name</strong> : {{item.name}} <br>
+								<strong>Category</strong> : {{home.categories[item.category_id]}} <br>
+								<span ng-if="item.purchase_date">
+									<strong>Purchased</strong> : {{item.purchase_date | date:"MM-dd-yyyy"}} <br>	
+								</span>
+								<span ng-if="item.expiration_date">
+									<strong>Expiration</strong> : {{item.expiration_date | date:"MM-dd-yyyy"}}	
+								</span>
+								
+							    <ion-option-button ng-click="home.editButton(event, item)" class="button button-edit">Edit</ion-option-button> <!-- swipe to the left buttons (edit, delete)-->
+							    <ion-option-button ng-click="home.delete(item.id)" class="button button-delete">Delete</ion-option-button>
+							</ion-item><!-- similar to ul li tags -->
+
+						</ion-list>
 		         
 		        </md-content>
 		      </md-tab>
@@ -73,13 +74,14 @@
 		      </md-tab>
 		      <md-tab label="Category">
 		        <md-content class="md-padding">
-		           <ion-list ng-repeat="(key, value) in home.categories">
+		          <ion-list ng-repeat="(key, value) in home.categories"> <!-- key is number, value is name -->
 	       		
-						<ion-item href="#/tab/category/{{key}}" class="item-icon-right">
-							<strong>{{value}}</strong> 		
-							<badge ck="key" cv="value"></badge>
-						</ion-item>
-					</ion-list>
+									<ion-item href="#/tab/category/{{key}}" class="item-icon-right"> <!-- ionic css class for placing icons on the right side -->
+										<strong>{{value}}</strong> 		
+										<badge ck="key" cv="value"></badge> <!-- badge component for total number of items in a particular category -->
+										
+									</ion-item>
+							</ion-list>
 		        </md-content>
 		      </md-tab>	      
 		    </md-tabs>

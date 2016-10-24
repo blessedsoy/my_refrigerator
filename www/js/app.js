@@ -45,9 +45,9 @@ angular.module('starter', [
   $stateProvider
 
   // setup an abstract state for the tabs directive
-    .state('tab', {
+  .state('tab', {
     url: '/tab',
-    abstract: true,
+    abstract: true, //make tabs floating on top
     templateUrl: 'templates/tabs.html'
   })
 
@@ -73,7 +73,7 @@ angular.module('starter', [
   .state('tab.new', {
     url: '/new',
     views: {
-      'tab-home': {
+      'tab-home': { //stays in tab-home
         templateUrl: 'templates/home/new-item.html',
         controller: 'AddIngredientCtrl as ingredient'
       }

@@ -23,7 +23,6 @@ angular.module('starter', [
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
-
     }
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
@@ -115,7 +114,18 @@ angular.module('starter', [
         controller: 'ExpirationCtrl as expiration'
       }
     }
-  })     
+  })  
+
+  .state('tab.account', {
+    url: '/account',
+    views: {
+      'tab-account': {
+        templateUrl: 'templates/auth/account.html',
+        controller: 'AccountCtrl as account'
+      }
+    }
+  }) 
+
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/login');

@@ -118,7 +118,7 @@ angular.module('starter', [
   })     
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/home');
+  $urlRouterProvider.otherwise('/login');
   $ionicConfigProvider.backButton.previousTitleText(false).text('');
 
   AuthProvider.registerPath('http://localhost:3000/users.json');

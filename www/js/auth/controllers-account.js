@@ -1,5 +1,5 @@
 
-function AccountController ($http, $scope, Auth) {
+function AccountController ($http, $scope, Auth, $state) {
 
 	var ctrl = this
 
@@ -20,6 +20,7 @@ function AccountController ($http, $scope, Auth) {
 	    Auth.register(ctrl.new, config).then(function(registeredUser) {
             console.log('register success !!!')
             console.log(registeredUser); // => {id: 1, ect: '...'}
+            $state.go('tab.home');
         }, function(error) {
         	console.log(error)
             // Registration failed...
@@ -37,6 +38,7 @@ function AccountController ($http, $scope, Auth) {
         Auth.login(ctrl.user, config).then(function(user) {
             console.log('log-in success')
             console.log(user);
+            $state.go('tab.home');
         }, function(error) {
         	console.log(error)
             // Authentication failed...

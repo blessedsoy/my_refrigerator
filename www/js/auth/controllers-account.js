@@ -5,7 +5,13 @@ angular.module('starter.controllers-account', [])
 
 	ctrl.login = function () {
 		if(ctrl.user.email && ctrl.user.pass){
-			console.log(ctrl.user.email, ctrl.user.pass)
+			var url = "http://localhost:3000/users/sign_in.json";
+		  $http.post(url, {"user": {"email": 'asdf@gmail.com', "password": 'asdfasdf'}}).then(function (success) {
+			ctrl.allItems = success.data
+				console.log(success.data)
+			}, function (err) {
+				console.log(err)
+			})
 		}
 	}
 
@@ -16,19 +22,19 @@ angular.module('starter.controllers-account', [])
 		if(ctrl.new.email && ctrl.new.password){
 
 			console.log(ctrl.new.email, ctrl.new.password)
-			// var url = "http://localhost:3000/users"
-			// var data = {email: ctrl.new.email, password: ctrl.new.password}
-			// var config = {
-			//   headers: {
-			//     "Accept": "application/json"
-			//   }
-			// }			
+			var url = "http://localhost:3000/users"
+			var data = {email: ctrl.new.email, password: ctrl.new.password}
+			var config = {
+			  headers: {
+			    "Accept": "application/json"
+			  }
+			}			
 
-		// 	$http.post(url, data).then(function (success) {
-		// 		console.log(success)
-		// 	}, function (error) {	
-		// 		console.log(error)
-		// 	})	
+			$http.post(url, data).then(function (success) {
+				console.log(success)
+			}, function (error) {	
+				console.log(error)
+			})	
 
 		}
 

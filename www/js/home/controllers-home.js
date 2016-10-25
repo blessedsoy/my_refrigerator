@@ -5,7 +5,7 @@ function HomeController ($http, $scope, $state, $ionicHistory,
 
 	var ctrl = this;
 
-  ctrl.category_id = $state.params.id
+  	ctrl.category_id = $state.params.id
   
 	ctrl.categories = HomeService.categories;
 
@@ -65,6 +65,7 @@ function HomeController ($http, $scope, $state, $ionicHistory,
   	ctrl.edit_item = item
 
   	if(ctrl.edit_item.expiration_date){
+
   		ctrl.edit_item.expiration_date = new Date(moment(item.expiration_date)) //changing date string to date object format
   	}
   	if(ctrl.edit_item.purchase_date){
@@ -74,6 +75,7 @@ function HomeController ($http, $scope, $state, $ionicHistory,
     $mdDialog.show({     //angular material dialog
       templateUrl: 'templates/home/dialog-edit.html',
       parent: angular.element(document.body),
+
       targetEvent: event,    //recieved from ng click event and function argument
       clickOutsideToClose:false,     //you can't close the dialog unless you click the close button
       scope: $scope,    //$scope is currnt scope in the controller
@@ -82,6 +84,7 @@ function HomeController ($http, $scope, $state, $ionicHistory,
   };
 
   ctrl.edit_confirm = function () {
+
     $mdDialog.cancel();  //close dialog
     $ionicListDelegate.closeOptionButtons() 
     ctrl.edit(ctrl.edit_item); //edited items from dialog-edit html
@@ -104,7 +107,6 @@ function HomeController ($http, $scope, $state, $ionicHistory,
   }
 
 
-
   // ---------------------------------------------------------
   //
   // Delete Item
@@ -112,7 +114,7 @@ function HomeController ($http, $scope, $state, $ionicHistory,
   // ---------------------------------------------------------
 
  	ctrl.delete = function (id) {
- 		$ionicListDelegate.closeOptionButtons()
+ 		$ionicListDelegate.closeOptionButtons();
 		var url = "http://localhost:3000/api/ingredients/";
 
 		$http.delete(url + id).then(function (success) {
@@ -124,11 +126,10 @@ function HomeController ($http, $scope, $state, $ionicHistory,
  	}
 };
 
+
+
+
 angular.module('starter')
-
 .controller('HomeCtrl', HomeController)
-
-
-
 
 

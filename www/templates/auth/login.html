@@ -8,23 +8,26 @@
   <div class="card"></div>
   <div class="card">
     <h1 class="title">Login</h1>
-    <form>
+    <form ng-submit="account.login()" role="form" ng-init="account.user = {}">
       <div class="input-container">
-        <input ng-model="account.user.email" type="text" id="Username" required="required"/>
+        <input ng-model = "account.user.email" type="text" id="Username" required="required"/>
+
         <label for="Username">Username</label>
         <div class="bar"></div>
       </div>
       <div class="input-container">
-        <input ng-model="account.user.pass" type="password" id="Password" required="required"/>
+        <input ng-model="account.user.password" type="password" id="Password" required="required"/>
         <label for="Password">Password</label>
         <div class="bar"></div>
       </div>
       <div class="button-container">
-        <button ng-click="account.login()"><span>Go</span></button>
+
+        <button type="submit"><span>Go</span></button>
       </div>
       <div class="footer"><a href="#">Forgot your password?</a></div>
     </form>
   </div>
+
   <div class="card alt">
     <div class="toggle"></div>
     <h1 class="title">Register
@@ -41,11 +44,11 @@
         <label>Password</label>
         <div class="bar"></div>
       </div>
-      <!-- <div class="input-container">
-        <input type="password" id="Repeat Password" required="required"/>
+      <div class="input-container">
+        <input ng-model="account.new.confirm_password" type="password" id="Repeat Password" required="required"/>
         <label for="Repeat Password">Repeat Password</label>
         <div class="bar"></div>
-      </div> -->
+      </div>
       <div class="button-container">
         <button ng-click="account.goRegister()"><span>Register</span></button>
       </div>
@@ -55,3 +58,4 @@
 
   </ion-content>
 </ion-view>
+

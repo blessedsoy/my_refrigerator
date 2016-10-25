@@ -50,8 +50,8 @@
 	  			$scope.theRecipe.ingredients_detail = $scope.theRecipe.ingredients_detail.split('|')	
 	  		}else if((typeof $scope.theRecipe.ingredients_detail === 'object')){
 	  			$scope.theRecipe.ingredients_detail = $scope.theRecipe.ingredients_detail[0].split('|')	
+
 	  		} // for changing the format of details 
-			
 	  	}
 	  
 	    $mdDialog.show({ //angular material dialog 
@@ -69,15 +69,11 @@
 		$mdDialog.cancel();
 	}  
 
-
-
   $scope.openInAppBrowser = function (url) {
   	window.open(url, '_blank', 'location=no')
   }
 
-
 	$scope.view = 'recipe'
-
 
 
   // ---------------------------------------------------------

@@ -11,7 +11,7 @@ function UtilsService($http, $ionicLoading, $timeout) {
 	        }); 
         
 	        $timeout(function(){
-	            $ionicLoading.hide();
+                $ionicLoading.hide();
 	        }, optHideTime)
         
     	}else{

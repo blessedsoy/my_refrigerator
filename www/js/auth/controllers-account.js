@@ -24,17 +24,25 @@ function AccountController ($http, $scope, Auth, $state, $mdDialog, UtilsService
             $state.go('tab.home');
         }, function(error) {
         	console.log(error)
+
+            var error_message = ""
+            if(error.data.errors.email){
+                error_message += "Email " + error.data.errors.email;
+            }
+            if(error.data.errors.password){
+                error_message += "<br> Password " + error.data.errors.password;
+            }
+
+    
+            UtilsService.showMessage(error_message, 3000)
             // Registration failed...
         });
-        $scope.$on('devise:new-registration', function(event, user) {
-            // ...
-        });
+
 	}
 
 	ctrl.login = function () {
 
-
-		// console.log({email: ctrl.user.email, password: ctrl.user.password})
+		// console.log(ctrl.user)
 
         Auth.login(ctrl.user, config).then(function(user) {
             console.log('log-in success')
@@ -47,13 +55,6 @@ function AccountController ($http, $scope, Auth, $state, $mdDialog, UtilsService
             // Authentication failed...
         });
 
-        $scope.$on('devise:login', function(event, currentUser) {
-            // after a login, a hard refresh, a new tab
-        });
-
-        $scope.$on('devise:new-session', function(event, currentUser) {
-            // user logged in by Auth.login({...})
-        });
 	}
 
 	ctrl.logout = function () {
@@ -79,19 +80,6 @@ function AccountController ($http, $scope, Auth, $state, $mdDialog, UtilsService
         });		
 	}
 
-	ctrl.currentUser = function () {
-  var parameters = {
-            email: 'soulmecca@gmail.com'
-        };
-
-        Auth.sendResetPasswordInstructions(parameters).then(function() {
-            // Sended email if user found otherwise email not sended...
-        });
-
-        $scope.$on('devise:send-reset-password-instructions-successfully', function(event) {
-            // ...
-        });
-	}
 
   //logout confirm
   ctrl.logoutConfirm = function(ev) {

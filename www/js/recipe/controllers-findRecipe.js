@@ -1,12 +1,12 @@
-function FindRecipeController (HomeService ,$http, $ionicListDelegate, 
-	$rootScope, $scope, $ionicHistory, $mdDialog, UtilsService) {
+function FindRecipeController (HomeService , RecipeService,$http, $ionicListDelegate, 
+	$rootScope, $scope, $ionicHistory, $mdDialog, UtilsService){
 
 	var ctrl = this;
 
 	ctrl.new = {};	
 
 	ctrl.loading = false;
-	$scope.view = 'findRecipe'
+	$scope.view = 'findRecipe' //
 
   // ---------------------------------------------------------
   //
@@ -77,24 +77,8 @@ function FindRecipeController (HomeService ,$http, $ionicListDelegate,
 
 	console.log(ctrl.selected)  	
 
-	var config = {
-	  headers: {
-	    "X-Mashape-Key": "w5sblQdN1NmshBVyem8S5zhGurKkp1oe8KtjsngWWeabPqpfNY",
-	    "Accept": "application/json"
-	  }
-	}
-
-	var url = "https://community-food2fork.p.mashape.com/search?key=003a7677ea99d47cdeaf6baf634644f3&q="          
-
-	for(var i = 0; i < ctrl.selected.length; i++){
-		url += ctrl.selected[i].name
-		if(i !== ctrl.selected.length - 1){
-			url += '+'
-		}		
-	}
-// "https://community-food2fork.p.mashape.com/get?key=003a7677ea99d47cdeaf6baf634644f3&rId=29159";
-	          
-	$http.get(url, config).then(function(success){
+          
+	RecipeService.findRecipe(ctrl.selected).then(function(success){
 	  if(success.status === 200){
 	  	console.log(success.data)	
 	  	if(success.data.count > 0){
@@ -192,7 +176,7 @@ function FindRecipeController (HomeService ,$http, $ionicListDelegate,
   		ingredients += ctrl.theRecipe.ingredients[i]
   		if(i !== ctrl.theRecipe.ingredients.length - 1){
   			ingredients += '|'
-  		}
+  		} // adding '|' for <br>
   	}
 
 

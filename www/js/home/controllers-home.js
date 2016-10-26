@@ -11,9 +11,18 @@ function HomeController ($http, $scope, $state, $ionicHistory,
 
 
 
+
 	var ctrl = this;
 
-  	ctrl.category_id = $state.params.id //
+
+
+  ctrl.increase = function(item) {
+    console.log(item.count)
+    }
+
+  
+
+  	ctrl.category_id = $state.params.id 
   
 	  ctrl.categories = HomeService.categories;
 
@@ -69,6 +78,7 @@ function HomeController ($http, $scope, $state, $ionicHistory,
 
 
   ctrl.editButton = function(event, item) {
+    // this function is called in tab-home.html when you click on edit button.
 
   	ctrl.edit_item = item
 
@@ -92,7 +102,7 @@ function HomeController ($http, $scope, $state, $ionicHistory,
   };
 
   ctrl.edit_confirm = function () {
-
+    // this function is called when confirm button is clicked in edit dialog. 
     $mdDialog.cancel();  //close dialog
     $ionicListDelegate.closeOptionButtons() 
     ctrl.edit(ctrl.edit_item); //edited items from dialog-edit html

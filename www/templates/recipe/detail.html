@@ -1,6 +1,6 @@
 
 <md-dialog aria-label="Recipe Detail">
-  <form ng-cloak>
+  <form ng-cloak> 
     <md-toolbar>
       <div class="md-toolbar-tools"> 
         <h2>Recipe Detail</h2>
@@ -17,14 +17,14 @@
         
         <img style="margin: auto; max-width: 100%;" alt="image" ng-src="{{theRecipe.image_url}}">
 
-        <div ng-if="view === 'findRecipe'">
+        <div ng-if="view === 'findRecipe'"> <!-- from findRecipe controller-->
           <h4>Ingredients</h4>
-          <ol ng-repeat="item in theRecipe.ingredients track by $index">
+          <ol ng-repeat="item in theRecipe.ingredients track by $index"> 
             <li> {{item}} </li>  
           </ol>          
         </div>
 
-        <div ng-if="view !== 'findRecipe'">
+        <div ng-if="view !== 'findRecipe'"><!-- from recipe controller -->
           <h4>Ingredients</h4>
           <ol ng-repeat="item in theRecipe.ingredients_detail track by $index">
             <li> {{item}} </li>  

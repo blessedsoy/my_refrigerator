@@ -3,13 +3,11 @@
   <ion-content class="padding">
 
 <div class="pen-title">
-<!-- <<<<<<< HEAD
 
-=======
-  <h1>Material Login Form</h1><span>Pen <i class='fa fa-code'></i> by <a href='http://andytran.me'>Andy Tran</a></span>
+<!--   <h1>Material Login Form</h1><span>Pen <i class='fa fa-code'></i> by <a href='http://andytran.me'>Andy Tran</a></span>
 </div>
 <div class="rerun" ng-click="account.currentUser()"><a href="">Rerun Pen</a></div>
->>>>>>> 9a037130f13cac30e7cff6f517ca33421f330b45 -->
+ -->
 <div class="container">
   <div class="card"></div>
   <div class="card">
@@ -21,8 +19,8 @@
         <label for="Username">Email</label>
         <input placeholder="email" ng-model = "account.user.email" type="email" id="Username" name="email" ng-pattern="/^.+@.+\..+$/" required="required"/>
         <div ng-messages="login_form.email.$error" role="alert" >
-          <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
-            Your email must look like an e-mail address.
+          <div ng-message-exp="['required', 'pattern']">
+            Your email must be a valid e-mail address.
           </div>
         </div>        
         <div class="bar"></div>
@@ -36,7 +34,7 @@
           <input aria-label="password" placeholder="password" ng-model="account.user.password" type="password" name ="password" id="Password" ng-pattern="/^(?=.*[a-z])(?=.*[0-9])(?=.{6,})/" min="6" required="required"/>
             <div ng-messages = "login_form.password.$error">
               <div ng-message-exp="['required', 'pattern', 'min']">
-                Must contain one lower,</br>one number and minimum lenght of 6
+                Must contain one lowercase,</br>one number and minimum length of 6
               </div>
             </div>          
           <div class="bar"></div>

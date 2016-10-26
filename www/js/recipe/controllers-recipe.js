@@ -22,7 +22,7 @@
 	  	if(res.status === 200 & res.data.length > 0){
 	  		console.log(res.data)
 	  		ctrl.allRecipes = res.data
-	  		$ionicScrollDelegate.resize();	
+	  		$ionicScrollDelegate.resize();	// resizing the recipe cards section after delete.
 	  	}
 	  	
 	 },function (error) {

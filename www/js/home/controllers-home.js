@@ -3,13 +3,21 @@ function HomeController ($http, $scope, $state, $ionicHistory,
 	$ionicListDelegate, $timeout, $mdDialog, $state, $mdDateLocale, 
 	HomeService, $rootScope, $ionicScrollDelegate) {
 
+
+// $ionicHistory, 
+// $ionicListDelegate
+// $rootScope
+// $ionicScrollDelegate
+
+
+
 	var ctrl = this;
 
-  	ctrl.category_id = $state.params.id
+  	ctrl.category_id = $state.params.id //
   
-	ctrl.categories = HomeService.categories;
+	  ctrl.categories = HomeService.categories;
 
-	ctrl.new = {};	
+	  ctrl.new = {};	
 
 
 	function getAllItems () {
@@ -36,7 +44,7 @@ function HomeController ($http, $scope, $state, $ionicHistory,
 
 	$rootScope.$on('updateAllItems', function () {
 		ctrl.refresh();
-	})	
+	})	//
 
 
   // ---------------------------------------------------------
@@ -50,7 +58,7 @@ function HomeController ($http, $scope, $state, $ionicHistory,
   ctrl.newItem = function () {
 
   	$state.go('tab.new')
-  } // when you click on new button
+  } // when you click on new button, it will go to tab.new page
   
 
   // ---------------------------------------------------------

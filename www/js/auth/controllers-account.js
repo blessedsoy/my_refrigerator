@@ -79,19 +79,19 @@ function AccountController ($http, $scope, Auth, $state, $mdDialog, UtilsService
         });		
 	}
 
-	ctrl.currentUser = function () {
-  var parameters = {
-            email: 'soulmecca@gmail.com'
-        };
+	// ctrl.currentUser = function () {
+ //    var parameters = {
+ //            email: 'soulmecca@gmail.com'
+ //        };
 
-        Auth.sendResetPasswordInstructions(parameters).then(function() {
-            // Sended email if user found otherwise email not sended...
-        });
+ //        Auth.sendResetPasswordInstructions(parameters).then(function() {
+ //            // Sended email if user found otherwise email not sended...
+ //        });
 
-        $scope.$on('devise:send-reset-password-instructions-successfully', function(event) {
-            // ...
-        });
-	}
+ //        $scope.$on('devise:send-reset-password-instructions-successfully', function(event) {
+ //            // ...
+ //        });
+	// }
 
   //logout confirm
   ctrl.logoutConfirm = function(ev) {

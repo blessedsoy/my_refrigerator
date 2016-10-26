@@ -69,7 +69,7 @@ angular.module('starter', [
   .state('tab.new', {
     url: '/new',
     views: {
-      'tab-home': { //stays in tab-home
+      'tab-home': { //under tab-home
         templateUrl: 'templates/home/new-item.html',
         controller: 'AddIngredientCtrl as ingredient'
       }

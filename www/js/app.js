@@ -9,7 +9,6 @@ angular.module('starter', [
   'ionic', 
   'ngCordova',
   'Devise',
-
   'ngMaterial',
   'ngMessages',
   'ngAnimate',

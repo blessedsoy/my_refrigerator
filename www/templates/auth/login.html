@@ -14,21 +14,43 @@
   <div class="card"></div>
   <div class="card">
     <h1 class="title">Login</h1>
-    <form ng-submit="account.login()" role="form" ng-init="account.user = {}">
+    <form ng-submit="account.login()" role="form" ng-init="account.user = {}" name="login_form">
+      
+      <div class="input-container" style="margin-bottom:0">
+        <md-input-container>
+        <label for="Username">Email</label>
+        <input placeholder="email" ng-model = "account.user.email" type="email" id="Username" name="email" ng-pattern="/^.+@.+\..+$/" required="required"/>
+        <div ng-messages="login_form.email.$error" role="alert" >
+          <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+            Your email must look like an e-mail address.
+          </div>
+        </div>        
+        <div class="bar"></div>
+        </md-input-container>
+      </div>
+      
+      
       <div class="input-container">
-        <input ng-model = "account.user.email" type="text" id="Username" required="required"/>
+        <md-input-container>
+          <label for="Password">Password</label>
+          <input aria-label="password" placeholder="password" ng-model="account.user.password" type="password" name ="password" id="Password" ng-pattern="/^(?=.*[a-z])(?=.*[0-9])(?=.{6,})/" min="6" required="required"/>
+            <div ng-messages = "login_form.password.$error">
+              <div ng-message-exp="['required', 'pattern', 'min']">
+                Must contain one lower,</br>one number and minimum lenght of 6
+              </div>
+            </div>          
+          <div class="bar"></div>
+        </md-input-container>
+      </div>
+      
 
-        <label for="Username">Username</label>
-        <div class="bar"></div>
-      </div>
-      <div class="input-container">
-        <input ng-model="account.user.password" type="password" id="Password" required="required"/>
-        <label for="Password">Password</label>
-        <div class="bar"></div>
-      </div>
       <div class="button-container">
 
-        <button type="submit"><span>Go</span></button>
+        <button ng-disabled="login_form.$invalid" type="submit">
+          <span ng-if="!login_form.$invalid">Go</span>
+          <span ng-if="login_form.$invalid">Invalid</span>
+          
+        </button>
       </div>
       <div class="footer"><a href="#">Forgot your password?</a></div>
     </form>

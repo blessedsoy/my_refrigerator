@@ -18,9 +18,8 @@ function HomeController ($http, $scope, $state, $ionicHistory,
 
   ctrl.increase = function(item) {
     var newCount = item.count ++
-    $http.post()
     var url = "http://localhost:3000/api/ingredients/";
-    $http.patch(url + data.id , {count: newCount }).then(function (success) {
+    $http.patch(url + item.id , {count: newCount }).then(function (success) {
       console.log(success)
     }, function (err) {
       console.log(err)

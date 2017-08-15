@@ -3,6 +3,7 @@ This app is built with AngularJS, and it helps organizing all the items in your 
 
 After cloning or downloading this repository,
 type these in the terminal on the same directory of the application.
+
 // npm install
 // ionic serve
 
